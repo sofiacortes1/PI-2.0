@@ -1,18 +1,7 @@
-let controlador =  {
-    index: (req,res) =>{
-        res.render('index');
-    },
-
+let controladorMenu =  {
+    
     login: (req,res) =>{
         res.render('login');
-    },
-
-    products: (req,res) =>{
-        res.render('products');
-    },
-
-    productsAdd: (req,res) =>{
-        res.render('productsAdd');
     },
 
     profile: (req,res) =>{
@@ -35,4 +24,4 @@ let controlador =  {
 
 
 
-module.exports = controlador; 
+module.exports = controladorMenu; 
