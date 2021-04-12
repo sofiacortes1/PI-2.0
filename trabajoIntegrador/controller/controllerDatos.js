@@ -1,4 +1,4 @@
-let controladorMenu =  {
+let controladorDatos =  {
     
     login: (req,res) =>{
         res.render('login');
@@ -9,7 +9,7 @@ let controladorMenu =  {
     },
 
     profileEdits: (req,res) =>{
-        res.render('profileEdits');
+        res.render('profile-edits');
     },
 
     register: (req,res) =>{
@@ -17,11 +17,11 @@ let controladorMenu =  {
     },
 
     searchResults: (req,res) =>{
-        res.render('searchResults');
+        res.render('search-results');
     },
 
 };
 
 
 
-module.exports = controladorMenu; 
+module.exports = controladorDatos; 

@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
 
-let controlador = require('../controller/controllerMenu');
+let controlador = require('../controller/controllerDatos');
 
 
 router.get('/login',controlador.login);  //ver lo de parametros obligatorios

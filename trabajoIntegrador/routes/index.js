@@ -7,7 +7,7 @@ router.get('/',controlador.index);
 
 router.get('/products',controlador.products);
 
-router.get('/productsAdd',controlador.productsAdd);
+router.get('/products-add',controlador.productsAdd);
 
 
 

@@ -9,7 +9,7 @@ let controladorIndex =  {
     },
 
     productsAdd: (req,res) =>{
-        res.render('productsAdd');
+        res.render('products-add');
     },
 
 };
