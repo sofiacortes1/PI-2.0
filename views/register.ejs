@@ -30,17 +30,17 @@
 			</div>
 			<!-- Show the "ultimos" products -->
 			<h2 class="col-12"> 
-				<form action="/action_page.php">
+				<form action="http://localhost:3000/datos/profileEdits">
 
-					<label for="fname">Nombre:</label><br>
-					<input type="text" id="fname" name="fname" value=""><br>
-					<label for="lname">Apellido:</label><br>
-					<input type="text" id="lname" name="lname" value=""><br>
-					<label for="email">Mail:</label><br>
-					<input type="text" id="email" name="email" value=""><br>
-					<label for="password">Contraseña:</label><br>
-					<input type="text" id="Contraseña" name="Contraseña" value=""><br>
-					<input type="submit" value="Submit">
+					<p>Nombre: <input type="text" name="name" required></p>
+
+					<p>Apellido: <input type="text" name="lname" required></p>
+
+					<p>Mail:   <input type="text" name="email" required></p>
+
+					<p>Contraseña: <input type="password" name="password" required></p>
+
+					<p>  <input type="submit" value="Submit"> </p>
 
 				</form>
 
