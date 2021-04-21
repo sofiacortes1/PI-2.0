@@ -7,14 +7,16 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link width="" rel="shortcut icon" href="/images/download.png" />
 
-	<title> Mercedes Venz</title>
+	<title> Cars PRO</title>
 	<!-- Font Awesome Stylesheet -->
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css">
+	<link rel="preconnect" href="https://fonts.gstatic.com"> 
+	<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300&display=swap" rel="stylesheet">
 	<!-- Bootstrap Grid Stylesheet -->
 	<link rel="stylesheet" href="/stylesheets/bootstrap-grid.min.css">
 	<!-- Own Stylesheet -->
 	<link rel="stylesheet" href="/stylesheets/app.css">
-	<%- include('./partials/header.ejs') %>
+	<%- include('./partials/headerLogueado.ejs') %>
 </head>
 
 <body>
@@ -29,21 +31,26 @@
 				<h2 class="products-title">Editar mi perfil</h2>
 			</div>
 			<!-- Show the "ultimos" products -->
-			<h2 class="col-12"> 
+			<div class="formulario"> 
+				<h2 class="col-12"> 
 				
-				<form action="http://localhost:3000/datos/profile">
+					<form action="http://localhost:3000/datos/profile">
 	
-					<p>Nombre: <input type="text" name="name" ></p>
+						<p>Nombre: </p>
+						<input type="text" name="name" >
 	
-					<p>Mail:   <input type="text" name="email" ></p>
+						<p>Mail:</p>
+						<input type="text" name="email" >
 	
-					<p>Contraseña: <input type="password" name="password" ></p>
+						<p>Contraseña: </p>
+						<input type="password" name="password" >
 	
-					<p>  <input type="submit" value="Submit"> </p>
+						<p>  <input type="submit" value="Submit"> </p>
 	
-				</form>
+					</form>
 	
-			</h2>
+				</h2>
+			</div>
 		</div>
 	</div>
 
