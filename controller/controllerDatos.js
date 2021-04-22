@@ -17,7 +17,23 @@ let controladorDatos =  {
     },
 
     searchResults: (req,res) =>{
+        let buscador = req.query.search;
+        if ( buscador !== '') {
+            res.render('search-results', {title: 'Tu resultado es...'})
+        } else {
+            
+        }
+
+
+        console.log(buscador);
+        console.log(req.query);
+
+
+
+
+
         res.render('search-results');
+       
     },
 
 };
