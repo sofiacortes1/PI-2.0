@@ -19,20 +19,11 @@ let controladorDatos =  {
     searchResults: (req,res) =>{
         let buscador = req.query.search;
         if ( buscador !== '') {
-            res.render('search-results', {title: 'Tu resultado es...'})
+            res.render('search-results', {title: 'Encontramos esto de ' + buscador + '...'})
         } else {
-            
+            res.render('search-results', {title: 'Esto encontramos para vos!'});
         }
-
-
-        console.log(buscador);
-        console.log(req.query);
-
-
-
-
-
-        res.render('search-results');
+        
        
     },
 
