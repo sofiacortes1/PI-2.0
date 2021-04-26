@@ -176,6 +176,7 @@ hr {
   font-size: 3.4em;
   font-weight: 400;
   color: var(--gray);
+  font-family: 'Mukta', sans-serif;
 }
 
 .product-box {
@@ -476,6 +477,8 @@ textarea.form-input {
 .main-title{
   font-size: 25px;
   margin-bottom: 10px;
+  font-family: 'Cairo', sans-serif;
+  font-family: 'Mukta', sans-serif;
 }
 
 .btn{
