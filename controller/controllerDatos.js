@@ -23,7 +23,9 @@ let controladorDatos =  {
         } else {
             res.render('search-results', {title: 'Esto encontramos para vos!'});
         }
-        
+        db.Producto.findAll(req.query.search).then(respuesta =>{
+            res.render('search-results', {search: respuesta});
+        });
        
     },
 
