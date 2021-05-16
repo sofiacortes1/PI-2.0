@@ -9,6 +9,8 @@ router.get('/products',controlador.products);
 
 router.get('/products-add',controlador.productsAdd);
 
+router.post('/crear', controlador.crear);
+
 
 
 
