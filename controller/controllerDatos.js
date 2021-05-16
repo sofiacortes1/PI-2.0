@@ -1,3 +1,6 @@
+const db = require('../database/models');
+const Op = db.Sequelize.Op;
+
 let controladorDatos =  {
     
     login: (req,res) =>{
@@ -23,13 +26,22 @@ let controladorDatos =  {
         } else {
             res.render('search-results', {title: 'Esto encontramos para vos!'});
         }
-        db.Producto.findAll(buscador).then(respuesta =>{
+        
+        let filtro ={
+            where:[{
+                name_producto: req.query.search
+            }]
+        }; 
+
+        db.Producto.findAll(filtro).then(respuesta =>{
             res.render('search-results', {lista: respuesta});
         });
-       
+    
     },
 
+
 };
+
 
 
 

@@ -3,7 +3,7 @@ module.exports = {
     "username": "root",
     "password": "root",
     "port": "8889",
-    "database": "movies_db",
+    "database": "TPIntegrador",
     "host": "127.0.0.1",
     "dialect": "mysql"
   }
