@@ -17,7 +17,7 @@ router.get('/searchResults',controlador.searchResults);
 
 //rutas con post
 
-router.post('/register', controlador.registerForm); 
+router.post('/register', controlador.registerCreatUser); 
 
 
 module.exports = router;

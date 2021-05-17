@@ -1,6 +1,9 @@
 const db = require('../database/models');
 const Op = db.Sequelize.Op;
 
+const bcrypt = 
+
+
 let controladorDatos =  {
     
     login: (req,res) =>{
@@ -39,7 +42,9 @@ let controladorDatos =  {
     
     },
 
-    registerForm: (req,res) => {
+    registerCreatUser: (req,res) => {
+        
+
 
     }
 

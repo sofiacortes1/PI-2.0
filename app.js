@@ -24,16 +24,17 @@ app.use(express.static(path.join(__dirname, 'public')));
 const session = require('express-session');
 
 app.use(session({secret: "proyecto", 
-    reseve: false, 
+    resave: false, 
     saveUninitialized: true
   })); 
 
-  app.use(function(req,res,next){
-    res.locals = {
+app.use(function(req,res,next){
+  res.locals = {
 
-    }
+  }
     return next(); 
   }); 
+  
 
   
 
