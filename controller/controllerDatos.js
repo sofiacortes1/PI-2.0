@@ -39,6 +39,10 @@ let controladorDatos =  {
     
     },
 
+    registerForm: (req,res) => {
+
+    }
+
 
 };
 

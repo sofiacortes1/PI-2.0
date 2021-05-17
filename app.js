@@ -21,6 +21,31 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+const session = require('express-session');
+
+app.use(session({secret: "proyecto", 
+    reseve: false, 
+    saveUninitialized: true
+  })); 
+
+  app.use(function(req,res,next){
+    res.locals = {
+
+    }
+    return next(); 
+  }); 
+
+  
+
+
+
+
+
+
+
+
+
+
 app.use('/', indexRouter);
 app.use('/datos', datosRouter);
 
