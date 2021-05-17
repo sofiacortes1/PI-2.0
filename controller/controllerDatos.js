@@ -1,8 +1,7 @@
 const db = require('../database/models');
 const Op = db.Sequelize.Op;
 
-const bcrypt = 
-
+const bcrypt = require('bcryptjs'); 
 
 let controladorDatos =  {
     
@@ -43,8 +42,15 @@ let controladorDatos =  {
     },
 
     registerCreatUser: (req,res) => {
-        
+        let passEncriptada = bcrypt.hashSync(req.body.pass);
 
+        db.Usuario.create({
+            name: req.body.name,
+            pass: passEncriptada
+        }).then(usuario => {
+            res.redirect('/');
+        });
+        
 
     }
 
