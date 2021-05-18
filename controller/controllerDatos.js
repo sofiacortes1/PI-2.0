@@ -27,7 +27,7 @@ let controladorDatos =  {
             res.render('search-results', {title: 'Encontramos esto de ' + buscador + '...'})
         } else {
             res.render('search-results', {title: 'Esto encontramos para vos!'});
-        }
+        };
         
         let filtro ={
             where:[{
@@ -41,19 +41,36 @@ let controladorDatos =  {
     
     },
 
-    registerCreatUser: (req,res) => {
+    registerCreateUser: (req,res) => {
         let passEncriptada = bcrypt.hashSync(req.body.pass);
 
         db.Usuario.create({
-            name: req.body.name,
+            email: req.body.email,
             pass: passEncriptada
         }).then(usuario => {
             res.redirect('/');
         });
         
 
-    }
+    },
 
+    loginValidate: (req, res) => {
+        const filtro = {
+           where: {
+            email: req.body.email,
+           } 
+        }
+        db.Usuario.findOne(filtro).then(resultado =>{
+            if(bcrypt.compareSync(req.body.pass, resultado.pass)){
+                req.session.resultado = resultado.name;
+               if(req.body.remember){
+                   res.cookie('userId', usuario.id, {maxAge: 1000 * 60 * 5 });
+               } 
+            }
+           res.redirect('/profile')
+        }) 
+        
+    }
 
 };
 

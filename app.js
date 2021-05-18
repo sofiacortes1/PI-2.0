@@ -28,22 +28,30 @@ app.use(session({secret: "proyecto",
     saveUninitialized: true
   })); 
 
+
+
+
+
+
 app.use(function(req,res,next){
   res.locals = {
 
   }
     return next(); 
   }); 
-  
 
-  
+const db = require('./database/models');
 
-
-
-
-
-
-
+app.use(function(req, res, next){
+  if(req.cookies.userId && !req.session.resultado){
+    db.Usuario.findByPk(req.cookies.userId).then(respuesta => {
+      req.session.resultado = respuesta.name;
+      return next();
+    });
+  } else {
+    return next();
+  }}
+  );
 
 
 
