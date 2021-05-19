@@ -7,7 +7,7 @@ CREATE TABLE usuarios (
     age TINYINT UNSIGNED NOT NULL, 
     birth_date DATE NOT NULL, 
     email VARCHAR(55) NOT NULL, 
-    contraseña VARCHAR(55) NOT NULL
+    contraseña VARCHAR(400) NOT NULL
 );
 
 CREATE TABLE productos (
