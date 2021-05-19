@@ -48,7 +48,7 @@ let controladorDatos =  {
             first_name: req.body.name,
             last_name: req.body.lname,
             email: req.body.email,
-            pass: passEncriptada,
+            contraseña: passEncriptada,
             age: req.body.age,
             birth_date: req.body.date
         }).then(usuario => {
