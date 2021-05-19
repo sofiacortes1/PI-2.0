@@ -53,7 +53,7 @@ let controladorDatos =  {
             birth_date: req.body.date
         }).then(usuario => {
             res.redirect('/', + usuario.id);
-        });
+        }).catch(error=>console.log(error));
         
 
     },
