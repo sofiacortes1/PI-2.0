@@ -4,7 +4,7 @@ var router = express.Router();
 let controlador = require('../controller/controllerDatos');
 
 
-router.get('/login',controlador.login);  //ver lo de parametros obligatorios
+router.get('/login',controlador.login);  
 
 router.get('/profile',controlador.profile);
 
@@ -17,7 +17,7 @@ router.get('/searchResults',controlador.searchResults);
 
 //rutas con post
 
-router.post('/register', controlador.registerCreateUser); 
+router.post('/profile', controlador.registerCreateUser); 
 
 router.post('/login', controlador.loginValidate);
 

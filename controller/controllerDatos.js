@@ -45,10 +45,14 @@ let controladorDatos =  {
         let passEncriptada = bcrypt.hashSync(req.body.pass);
 
         db.Usuario.create({
+            first_name: req.body.name,
+            last_name: req.body.lname,
             email: req.body.email,
-            pass: passEncriptada
+            pass: passEncriptada,
+            age: req.body.age,
+            birth_date: req.body.date
         }).then(usuario => {
-            res.redirect('/');
+            res.redirect('/', + usuario.id);
         });
         
 
