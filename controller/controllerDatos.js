@@ -23,10 +23,11 @@ let controladorDatos =  {
 
     searchResults: (req,res) =>{
         let buscador = req.query.search;
+        let title = 'x';
         if ( buscador !== '') {
-            res.render('search-results', {title: 'Encontramos esto de ' + buscador + '...'})
+            title = 'Encontramos esto de ' + buscador + '...'
         } else {
-            res.render('search-results', {title: 'Esto encontramos para vos!'});
+            title= 'Esto encontramos para vos!'
         };
         
         let filtro ={
@@ -36,7 +37,7 @@ let controladorDatos =  {
         }; 
 
         db.Producto.findAll(filtro).then(respuesta =>{
-            res.render('search-results', {lista: respuesta});
+            res.render('search-results', {lista: respuesta, title: title});
         });
     
     },
@@ -52,7 +53,7 @@ let controladorDatos =  {
             age: req.body.age,
             birth_date: req.body.date
         }).then(usuario => {
-            res.redirect('/', + usuario.id);
+            res.redirect('/' );
         }).catch(error=>console.log(error));
         
 

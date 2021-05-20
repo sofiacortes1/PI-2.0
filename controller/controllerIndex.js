@@ -15,9 +15,11 @@ let controladorIndex =  {
     },
     crear: (req, res) => {
         db.Producto.create({
-        title: req.body.creador
+        color: req.body.color,
+        name_producto: req.body.modelo,
+        fecha: req.body.fecha,
        }).then(productoCreado =>{ 
-           res.redirect('/profile/' + productoCreado.id);
+           res.redirect('/datos/profile')
        });
 
     }

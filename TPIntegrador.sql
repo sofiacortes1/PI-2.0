@@ -7,7 +7,7 @@ CREATE TABLE usuarios (
     age TINYINT UNSIGNED NOT NULL, 
     birth_date DATE NOT NULL, 
     email VARCHAR(55) NOT NULL, 
-    contraseña VARCHAR(400) NOT NULL
+    contraseña VARCHAR(55) NOT NULL
 );
 
 CREATE TABLE productos (
@@ -207,5 +207,6 @@ VALUES (DEFAULT, 'lindo auto!', '2021-11-12', 3, 10);
 INSERT INTO comentarios (id, texto, fecha, usuarios_id, productos_id )
 VALUES (DEFAULT, 'estupendo!', '2021-10-15', 4, 10);
 
-
+ALTER TABLE usuarios
+MODIFY contraseña VARCHAR(400);
 
