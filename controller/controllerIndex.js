@@ -22,7 +22,32 @@ let controladorIndex =  {
            res.redirect('/datos/profile')
        });
 
+    }, 
+
+    agregar: (req,res) => {
+        db.Comentario.create({
+            texto: re.body.agregar
+        }).then(comentAgregado => {
+            res.redirect('/products' + comentAgregado);
+
+        }) 
     }
+
+
+
+
+
+
+    //borrar: (req,res) => {
+    //    db.Comentario.destroy({
+     //       where: {
+       //         id: req.body.id
+    //        }
+     //   }).then(() => {
+     //       res.redirect('/products')
+     //   })
+
+  //  },
 
 };
 

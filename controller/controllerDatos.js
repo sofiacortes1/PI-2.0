@@ -72,7 +72,7 @@ let controladorDatos =  {
                    res.cookie('userId', usuario.id, {maxAge: 1000 * 60 * 5 });
                } 
             }
-           res.redirect('/profile')
+           res.redirect('/datos/profile')
         }) 
         
     }
