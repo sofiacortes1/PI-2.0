@@ -65,16 +65,19 @@ let controladorDatos =  {
             email: req.body.email,
            } 
         }
+        console.log("en loginValidate");
+        
         db.Usuario.findOne(filtro).then(resultado =>{
+            console.log(resultado)
             if(bcrypt.compareSync(req.body.pass, resultado.pass)){
-                req.session.resultado = resultado.name;
+                req.session.resultado = resultado.first_name;
                if(req.body.remember){
                    res.cookie('userId', usuario.id, {maxAge: 1000 * 60 * 5 });
                } 
             }
            res.redirect('/datos/profile')
         }) 
-        
+        .catch(error => console.log(error))
     }
 
 };

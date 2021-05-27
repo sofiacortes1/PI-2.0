@@ -29,29 +29,33 @@ app.use(session({secret: "proyecto",
   })); 
 
 
+  app.use(function(req, res, next){
+    console.log("En app.js");
+    
+    if(req.cookies.userId && !req.session.resultado){
+      console.log("entro?");
+      
+      db.Usuario.findByPk(req.cookies.userId).then(respuesta => {
+        req.session.resultado = respuesta.name;
+        return next();
+      }).catch(error => console.log(error));
+    } else {
+      return next();
+    }}
+    );
 
 
 
 
-app.use(function(req,res,next){
-  res.locals = {
+//app.use(function(req,res,next){
+ // res.locals = {
 
-  }
-    return next(); 
-  }); 
+  //}
+    //return next(); 
+  //}); 
 
 const db = require('./database/models');
 
-app.use(function(req, res, next){
-  if(req.cookies.userId && !req.session.resultado){
-    db.Usuario.findByPk(req.cookies.userId).then(respuesta => {
-      req.session.resultado = respuesta.name;
-      return next();
-    });
-  } else {
-    return next();
-  }}
-  );
 
 
 

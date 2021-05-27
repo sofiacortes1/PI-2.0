@@ -19,18 +19,17 @@ let controladorIndex =  {
         name_producto: req.body.modelo,
         fecha: req.body.fecha,
        }).then(productoCreado =>{ 
-           res.redirect('/datos/profile')
+           res.redirect('/datos/profile' + productoCreado)
        });
 
     }, 
-
-    agregar: (req,res) => {
+     agregar: (req,res) => {
         db.Comentario.create({
-            texto: re.body.agregar
+            texto: req.body.agregar,
         }).then(comentAgregado => {
-            res.redirect('/products' + comentAgregado);
+            res.redirect('/products' + comentAgregado)
 
-        }) 
+        }); 
     }
 
 
