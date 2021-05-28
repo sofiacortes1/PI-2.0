@@ -207,5 +207,6 @@ VALUES (DEFAULT, 'lindo auto!', '2021-11-12', 3, 10);
 INSERT INTO comentarios (id, texto, fecha, usuarios_id, productos_id )
 VALUES (DEFAULT, 'estupendo!', '2021-10-15', 4, 10);
 
-
+ALTER TABLE usuarios
+MODIFY contraseña VARCHAR(400);
 

@@ -23,11 +23,12 @@ let controladorDatos =  {
 
     searchResults: (req,res) =>{
         let buscador = req.query.search;
+        let title = 'x';
         if ( buscador !== '') {
-            res.render('search-results', {title: 'Encontramos esto de ' + buscador + '...'})
+            title = 'Encontramos esto de ' + buscador + '...'
         } else {
-            res.render('search-results', {title: 'Esto encontramos para vos!'});
-        }
+            title= 'Esto encontramos para vos!'
+        };
         
         let filtro ={
             where:[{
@@ -36,24 +37,48 @@ let controladorDatos =  {
         }; 
 
         db.Producto.findAll(filtro).then(respuesta =>{
-            res.render('search-results', {lista: respuesta});
+            res.render('search-results', {lista: respuesta, title: title});
         });
     
     },
 
-    registerCreatUser: (req,res) => {
+    registerCreateUser: (req,res) => {
         let passEncriptada = bcrypt.hashSync(req.body.pass);
 
         db.Usuario.create({
-            name: req.body.name,
-            pass: passEncriptada
+            first_name: req.body.name,
+            last_name: req.body.lname,
+            email: req.body.email,
+            contraseña: passEncriptada,
+            age: req.body.age,
+            birth_date: req.body.date
         }).then(usuario => {
-            res.redirect('/');
-        });
+            res.redirect('/' );
+        }).catch(error=>console.log(error));
         
 
-    }
+    },
 
+    loginValidate: (req, res) => {
+        const filtro = {
+           where: {
+            email: req.body.email,
+           } 
+        }
+        console.log("en loginValidate");
+        
+        db.Usuario.findOne(filtro).then(resultado =>{
+            console.log(resultado)
+            if(bcrypt.compareSync(req.body.pass, resultado.pass)){
+                req.session.resultado = resultado.first_name;
+               if(req.body.remember){
+                   res.cookie('userId', usuario.id, {maxAge: 1000 * 60 * 5 });
+               } 
+            }
+           res.redirect('/datos/profile')
+        }) 
+        .catch(error => console.log(error))
+    }
 
 };
 

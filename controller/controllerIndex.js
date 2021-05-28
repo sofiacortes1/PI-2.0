@@ -15,12 +15,38 @@ let controladorIndex =  {
     },
     crear: (req, res) => {
         db.Producto.create({
-        title: req.body.creador
+        color: req.body.color,
+        name_producto: req.body.modelo,
+        fecha: req.body.fecha,
        }).then(productoCreado =>{ 
-           res.redirect('/profile/' + productoCreado.id);
+           res.redirect('/datos/profile' + productoCreado)
        });
 
+    }, 
+     agregar: (req,res) => {
+        db.Comentario.create({
+            texto: req.body.agregar,
+        }).then(comentAgregado => {
+            res.redirect('/products' + comentAgregado)
+
+        }); 
     }
+
+
+
+
+
+
+    //borrar: (req,res) => {
+    //    db.Comentario.destroy({
+     //       where: {
+       //         id: req.body.id
+    //        }
+     //   }).then(() => {
+     //       res.redirect('/products')
+     //   })
+
+  //  },
 
 };
 

@@ -31,13 +31,19 @@
 			<!-- Show the "ultimos" products -->
 			<div class="formulario">
 				<h2 class="col-12"> 
-					<form action="/datos/profile">
+					<form action="/datos/profile" method="POST">
 
 						<p>Mail:</p>
-						<input type="text" name="email" required>
+
+						<input type="text" name="email" id="" required>
 
 						<p>Contraseña: </p>
-						<input type="password" name="password" required>
+
+						<input type="password" name="pass" id="" required>
+
+						<p>Recuerdame: </p>
+						
+						<input type="checkbox" name="remember" id="">  
 
 						<p>  <input type="submit" value="Submit"> </p>
 
