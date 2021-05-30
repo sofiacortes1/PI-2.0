@@ -36,7 +36,7 @@ app.use(session({secret: "proyecto",
       console.log("entro?");
       
       db.Usuario.findByPk(req.cookies.userId).then(respuesta => {
-        req.session.resultado = respuesta.name;
+        req.session.resultado = respuesta.first_name;
         return next();
       }).catch(error => console.log(error));
     } else {
