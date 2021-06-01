@@ -63,6 +63,7 @@ let controladorDatos =  {
         const filtro = {
            where: {
             email: req.body.email,
+            //contraseña: req.body.pass
            } 
         }
         console.log("en loginValidate");
@@ -71,6 +72,7 @@ let controladorDatos =  {
             console.log(resultado)
             if(bcrypt.compareSync(req.body.pass, resultado.pass)){
                 req.session.resultado = resultado.first_name;
+                //req.session.resultado = resultado.pass
                if(req.body.remember){
                    res.cookie('userId', usuario.id, {maxAge: 1000 * 60 * 5 });
                } 

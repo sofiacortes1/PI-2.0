@@ -14,7 +14,7 @@ router.get('/products-add',controlador.productsAdd);
 
 router.post('/crear', controlador.crear);
 
-router.post('/agregar', controlador.agregar);
+router.post('/agregar-comentario', controlador.agregarComentario);
 
 
 

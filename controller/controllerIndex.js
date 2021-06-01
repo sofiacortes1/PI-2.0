@@ -23,11 +23,11 @@ let controladorIndex =  {
        });
 
     }, 
-     agregar: (req,res) => {
+     agregarComentario: (req,res) => {
         db.Comentario.create({
             texto: req.body.agregar,
         }).then(comentAgregado => {
-            res.redirect('/products' + comentAgregado)
+            res.redirect('/products' + comentAgregado.texto)
 
         }); 
     }
