@@ -170,6 +170,13 @@ hr {
   margin-top: 30px;
   margin-bottom: 30px;
 }
+.usuario-welcome {
+  margin-block-start: auto;
+  font-size: 3.4em;
+  font-weight: 400;
+  color: var(--gray);
+  font-family: 'Mukta', sans-serif;
+}
 
 .products-title {
   margin-block-start: auto;

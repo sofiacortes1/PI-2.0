@@ -18,12 +18,13 @@
 
 
 <body>
-
 	<% if (usuarioLogueado != null) { %> 
 		<%- include('./partials/headerLogueado.ejs') %>
 		<% } else { %>
 			<%- include('./partials/headerNoLogueado.ejs') %>
 		<% } %>
+
+
 
 	<!-- Banner -->
 	<div class="banner">
@@ -43,7 +44,8 @@
 				<br>
 				<br>
 				<br>
-				<h2 class="products-title">Novedades</h2>
+				<p class="usuario-welcome">Bienvenido <%= usuario %></p>
+			<h2 class="products-title">Novedades</h2>
 			</div>
 			<!-- Show the "ultimos" products -->
 			<div class="col-12 col-sm-6 col-lg-3">

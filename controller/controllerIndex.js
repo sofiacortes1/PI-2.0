@@ -3,7 +3,13 @@ const Op = db.Sequelize.Op;
 
 let controladorIndex =  {
     index: (req,res) =>{
-        res.render('index');
+        if (req.session.usuario){
+            res.render('index', {usuario: req.session.usuario});
+        }
+        else {
+            res.render('index', {usuario: "anonimo"});
+        }
+    
     },
 
     products: (req,res) =>{
