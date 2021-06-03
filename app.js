@@ -36,23 +36,29 @@ app.use(session({secret: "proyecto",
       console.log("entro?");
       
       db.Usuario.findByPk(req.cookies.userId).then(respuesta => {
-        req.session.resultado = respuesta.first_name;
+        req.session.resultado = respuesta.email;
         return next();
       }).catch(error => console.log(error));
     } else {
       return next();
     }}
-    );
+  );
+
+app.use(function(req,res,next){
+  if(req.session.usuarioLogueado != null){
+    res.locals = {
+      usuarioLogueado: req.session.usuarioLogueado
+    }
+  } else {
+    res.locals = {
+      usuarioLogueado: null
+    }
+  }
+  return next();
+}); 
 
 
 
-
-//app.use(function(req,res,next){
- // res.locals = {
-
-  //}
-    //return next(); 
-  //}); 
 
 const db = require('./database/models');
 

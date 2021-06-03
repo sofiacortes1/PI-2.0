@@ -24,10 +24,11 @@ let controladorIndex =  {
 
     }, 
      agregarComentario: (req,res) => {
+        console.log("llega?")
         db.Comentario.create({
             texto: req.body.agregar,
         }).then(comentAgregado => {
-            res.redirect('/products' + comentAgregado.texto)
+            res.redirect('/products' + comentAgregado.id)
 
         }); 
     }

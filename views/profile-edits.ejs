@@ -19,14 +19,22 @@
 	<link rel="stylesheet" href="/stylesheets/bootstrap-grid.min.css">
 	<!-- Own Stylesheet -->
 	<link rel="stylesheet" href="/stylesheets/app.css">
-	<%- include('./partials/headerLogueado.ejs') %>
+	
 </head>
 
 <body>
 	<!-- Header -->
 
 <body>
+
+	<% if (usuarioLogueado != null) { %> 
+		<%- include('./partials/headerLogueado.ejs') %>
+		<% } else { %>
+			<%- include('./partials/headerNoLogueado.ejs') %>
+		<% } %>
 	
+	
+
 	<!-- Novedades -->
 	<div class="container products-wrapper">
 		<div class="row">

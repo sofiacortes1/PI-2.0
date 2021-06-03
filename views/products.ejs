@@ -13,10 +13,17 @@
 	<link rel="stylesheet" href="/stylesheets/bootstrap-grid.min.css">
 	<!-- Own Stylesheet -->
 	<link rel="stylesheet" href="/stylesheets/app.css">
-	<%- include('./partials/headerNoLogueado.ejs') %>
+	
 </head>
 <body>
 	
+	<% if (usuarioLogueado != null) { %> 
+		<%- include('./partials/headerLogueado.ejs') %>
+		<% } else { %>
+			<%- include('./partials/headerNoLogueado.ejs') %>
+		<% } %>
+
+
 	<!-- product detail -->
 	<div class="container products-wrapper">
 		<div class="d-flex align-items-center">
@@ -78,7 +85,7 @@
 						</article>
                          <article>
 							 <div>
-								 <%= comentAgregado.texto %>
+								 <%= comentAgregado.id%>
 							 </div>
 						 </article> 
 					</section>
