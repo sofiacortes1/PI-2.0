@@ -69,16 +69,24 @@ let controladorDatos =  {
         
         db.Usuario.findOne(filtro).then(resultado =>{
             console.log("probando")
+            console.log(req.body.pass);
+            console.log(resultado.contraseña);
+            
             if(bcrypt.compareSync(req.body.pass, resultado.contraseña)){
+               
                 req.session.resultado = resultado.email;
-                
+                req.session.resultado = resultado.first_name
                if(req.body.remember){
                    res.cookie('userId', resultado.id, {maxAge: 1000 * 60 * 5 });
                    console.log("probando if");
                 }  else {
                     console.log("probando else");
                 }
+            }else{
+                console.log("probando2");
+                
             }
+
            res.redirect('/datos/profile')
         }) 
         .catch(error => console.log(error))
