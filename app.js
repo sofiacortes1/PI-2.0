@@ -32,11 +32,11 @@ app.use(session({secret: "proyecto",
   app.use(function(req, res, next){
     console.log("En app.js");
     
-    if(req.cookies.userId && !req.session.resultado){
+    if(req.cookies.userId && ! req.session.resultado){
       console.log("entro?");
       
-      db.Usuario.findByPk(req.cookies.userId).then(respuesta => {
-        req.session.resultado = respuesta.email;
+      db.Usuario.findByPk(req.cookies.userId).then(resultado => {
+        req.session.resultado = resultado.email;
         return next();
       }).catch(error => console.log(error));
     } else {
@@ -45,9 +45,9 @@ app.use(session({secret: "proyecto",
   );
 
 app.use(function(req,res,next){
-  if(req.session.usuarioLogueado != null){
+  if(req.session.resultado != null){
     res.locals = {
-      usuarioLogueado: req.session.usuarioLogueado
+      usuarioLogueado: req.session.resultado
     }
   } else {
     res.locals = {

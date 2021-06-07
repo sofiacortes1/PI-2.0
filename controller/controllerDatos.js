@@ -10,7 +10,7 @@ let controladorDatos =  {
     },
 
     profile: (req,res) =>{
-        res.render('profile');
+        res.render('profile', {usuario: req.session.usuarioLogueado});
     },
 
     profileEdits: (req,res) =>{
@@ -63,16 +63,15 @@ let controladorDatos =  {
         const filtro = {
            where: {
             email: req.body.email,
-            //contraseña: req.body.pass
            } 
         }
         console.log("en loginValidate");
         
         db.Usuario.findOne(filtro).then(resultado =>{
-            console.log("hola")
+            console.log("probando")
             if(bcrypt.compareSync(req.body.pass, resultado.contraseña)){
                 req.session.resultado = resultado.email;
-                //req.session.resultado = resultado.pass
+                
                if(req.body.remember){
                    res.cookie('userId', resultado.id, {maxAge: 1000 * 60 * 5 });
                    console.log("probando if");
