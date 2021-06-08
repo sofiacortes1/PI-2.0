@@ -12,7 +12,7 @@ router.get('/products-add',controlador.productsAdd);
 
 //RUTAS POR POST
 
-router.post('/crear', controlador.crear);
+router.post('/crear-producto', controlador.crearProducto);
 
 router.post('/agregar-comentario', controlador.agregarComentario);
 

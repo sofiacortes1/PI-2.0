@@ -19,7 +19,7 @@ let controladorIndex =  {
     productsAdd: (req,res) =>{
         res.render('products-add');
     },
-    crear: (req, res) => {
+    crearProducto: (req, res) => {
         db.Producto.create({
         color: req.body.color,
         name_producto: req.body.modelo,
