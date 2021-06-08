@@ -68,14 +68,15 @@ let controladorDatos =  {
         console.log("en loginValidate");
         
         db.Usuario.findOne(filtro).then(resultado =>{
-            console.log("probando")
-            console.log(req.body.pass);
-            console.log(resultado.contraseña);
+           // return res.send(resultado); 
             
             if(bcrypt.compareSync(req.body.pass, resultado.contraseña)){
                
-                req.session.resultado = resultado.email;
-                req.session.resultado = resultado.first_name
+                req.session.resultado = {}
+                req.session.resultado.email = resultado.email;
+                req.session.resultado.first_name = resultado.first_name
+                req.session.resultado.id = resultado.id
+
                if(req.body.remember){
                    res.cookie('userId', resultado.id, {maxAge: 1000 * 60 * 5 });
                    console.log("probando if");
