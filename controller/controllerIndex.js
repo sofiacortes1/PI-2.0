@@ -21,8 +21,12 @@ let controladorIndex =  {
     },
 
     productDetalle: (req,res) => {
-
-        
+       let id = req.params.id;
+       console.log(id);
+       db.Producto.findByPk(id).then(resultado => {
+        res.render('products');
+       })
+       
 
     },
 
@@ -35,16 +39,9 @@ let controladorIndex =  {
            res.redirect('/products' + productoCreado.id)
        });
 
-    }, 
-     agregarComentario: (req,res) => {
-        console.log("llega?")
-        db.Comentario.create({
-            texto: req.body.agregar,
-        }).then(comentAgregado => {
-            res.redirect('/products' + comentAgregado.id)
-
-        }); 
     }
+     
+    
 
 
 

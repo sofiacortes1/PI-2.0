@@ -18,7 +18,7 @@
 	
 <body>
 
-	<% if (usuarioLogueado != null) { %> 
+	<% if (usuarioLogueado ) { %> 
 		<%- include('./partials/headerLogueado.ejs') %>
 		<% } else { %>
 			<%- include('./partials/headerNoLogueado.ejs') %>
@@ -33,7 +33,7 @@
 			</div>
 			<div class="data-container col-6">
 				<div class="d-flex align-items-center ">
-					<h1 class="main-title">  <%= usuarioLogueado.first_name  %>  
+					<h1 class="main-title">  <%= usuario.first_name  %> 
 						<a href="/datos/profileEdits">
 							<i class="fas fa-cog"></i>
 						</a>
@@ -66,7 +66,7 @@
 							<img src="/images/products/Audi-Q2-2021-delantera5.jpg" alt="cafetera moulinex">
 						</figure>
 						<article class="product-box_data">
-							<h2> Modelo: <%= productoCreado.name_producto %> </h2>
+							<h2> Modelo:  </h2>
 							<p>Los nuevos híbridos de la estrella con tecnología EQ Power ya están disponibles tanto con motor gasolina como diésel y también en versiones coupé</p>
 							<p>Comentarios: 12</p>
 						</article>

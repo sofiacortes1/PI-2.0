@@ -10,7 +10,7 @@ let controladorDatos =  {
     },
 
     profile: (req,res) =>{
-        res.render('profile', {usuario: req.session.usuarioLogueado});
+        res.render('profile');
     },
 
     profileEdits: (req,res) =>{
