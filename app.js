@@ -45,15 +45,18 @@ app.use(session({secret: "proyecto",
   );
 
 app.use(function(req,res,next){
-  if(req.session.resultado != null){
+  console.log(req.session.resultado);
+  if(req.session.resultado){
     res.locals = {
-      usuarioLogueado: req.session.resultado
+      usuarioLogueado: true, 
+      usuario: req.session.resultado
     }
   } else {
     res.locals = {
-      usuarioLogueado: null
+      usuarioLogueado: false 
     }
   }
+  console.log(res.locals);
   return next();
 }); 
 

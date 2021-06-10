@@ -19,13 +19,20 @@ let controladorIndex =  {
     productsAdd: (req,res) =>{
         res.render('products-add');
     },
+
+    productDetalle: (req,res) => {
+
+        
+
+    },
+
     crearProducto: (req, res) => {
         db.Producto.create({
         color: req.body.color,
         name_producto: req.body.modelo,
         fecha: req.body.fecha,
        }).then(productoCreado =>{ 
-           res.redirect('/datos/profile' + productoCreado)
+           res.redirect('/products' + productoCreado.id)
        });
 
     }, 

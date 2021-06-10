@@ -18,7 +18,7 @@
 
 
 <body>
-	<% if (usuarioLogueado != null) { %> 
+	<% if (usuarioLogueado) {  // En usuarioLogueado ya esta almacenado true y false %>  
 		<%- include('./partials/headerLogueado.ejs') %>
 		<% } else { %>
 			<%- include('./partials/headerNoLogueado.ejs') %>
@@ -44,7 +44,7 @@
 				<br>
 				<br>
 				<br>
-				<p class="usuario-welcome"> Bienvenid@ <%= usuarioLogueado.first_name  %> </p>
+				<p class="usuario-welcome"> Bienvenid@ <%= locals.usuarioLogueado.first_name  %> </p>
 			<h2 class="products-title">Novedades</h2>
 			</div>
 			<!-- Show the "ultimos" products -->
