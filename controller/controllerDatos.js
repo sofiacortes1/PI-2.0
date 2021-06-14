@@ -55,6 +55,8 @@ let controladorDatos =  {
         }).then(usuario => {
             res.redirect('/' );
         }).catch(error=>console.log(error));
+
+        
         
 
     },

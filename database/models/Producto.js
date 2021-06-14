@@ -21,10 +21,13 @@ module.exports = (sequelize, dataTypes) => {
         imagen: {
             type: dataTypes.STRING
         },
+        descrpicion: {
+            type: dataTypes.STRING
+        },
        
     }, {
         tableName: "productos",
-        timestamps: false
+        //timestamps: false
     });
     
     return Product;

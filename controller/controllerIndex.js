@@ -9,6 +9,11 @@ let controladorIndex =  {
         else {
             res.render('index', {usuario: "anonimo"});
         }
+
+        db.Producto.findAll().then(todo =>{
+            console.log(todo);
+            res.render('index' , {productos: todo}); 
+        })
     
     },
 
@@ -24,7 +29,9 @@ let controladorIndex =  {
        let id = req.params.id;
        console.log(id);
        db.Producto.findByPk(id).then(resultado => {
+        console.log(resultado.toJSON());
         res.render('products', {resultado: resultado});
+        
        })
        
 
