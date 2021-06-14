@@ -43,7 +43,7 @@ let controladorIndex =  {
         name_producto: req.body.modelo,
         fecha: req.body.fecha,
        }).then(productoCreado =>{ 
-           res.redirect('products')
+           res.redirect('/products/' + productoCreado)
        });
 
     },
