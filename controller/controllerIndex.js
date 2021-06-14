@@ -3,18 +3,17 @@ const Op = db.Sequelize.Op;
 
 let controladorIndex =  {
     index: (req,res) =>{
-        if (req.session.resultado){
-            res.render('index', {usuario: req.session.resultado});
-        }
-        else {
-            res.render('index', {usuario: "anonimo"});
-        }
 
         db.Producto.findAll().then(todo =>{
             console.log(todo);
-            res.render('index' , {productos: todo}); 
-        })
-    
+            if (req.session.resultado){
+                res.render('index', {usuario: req.session.resultado, productos: todo});
+            }
+            else {
+                res.render('index', {usuario: "anonimo", productos: todo });
+            } 
+        }).catch(error => console.log(error));
+
     },
 
     products: (req,res) =>{
@@ -33,8 +32,6 @@ let controladorIndex =  {
         res.render('products', {resultado: resultado});
         
        })
-       
-
     },
 
     crearProducto: (req, res) => {
@@ -45,8 +42,8 @@ let controladorIndex =  {
        }).then(productoCreado =>{ 
            res.redirect('/products/' + productoCreado)
        });
-
     },
+
     logout: (req, res) => {
         req.session.destroy();
         res.clearCookie('userId');
