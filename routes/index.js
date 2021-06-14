@@ -11,12 +11,11 @@ router.get('/products/:id',controlador.productDetalle);
 
 router.get('/products-add',controlador.productsAdd);
 
+router.get('/logout',controlador.logout);
 
 //RUTAS POR POST
 
 router.post('/crear-producto', controlador.crearProducto);
-
-router.post('/agregar-comentario', controlador.agregarComentario);
 
 
 

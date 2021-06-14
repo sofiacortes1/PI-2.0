@@ -24,7 +24,7 @@ let controladorIndex =  {
        let id = req.params.id;
        console.log(id);
        db.Producto.findByPk(id).then(resultado => {
-        res.render('products');
+        res.render('products', {resultado: resultado});
        })
        
 
@@ -36,9 +36,14 @@ let controladorIndex =  {
         name_producto: req.body.modelo,
         fecha: req.body.fecha,
        }).then(productoCreado =>{ 
-           res.redirect('/products' + productoCreado.id)
+           res.redirect('products')
        });
 
+    },
+    logout: (req, res) => {
+        req.session.destroy();
+        res.clearCookie('userId');
+        res.redirect('/');
     }
      
     
