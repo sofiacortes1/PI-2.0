@@ -27,7 +27,7 @@ CREATE TABLE comentarios (
     usuarios_id INT UNSIGNED, 
 	productos_id INT UNSIGNED, 
     FOREIGN KEY (usuarios_id) REFERENCES usuarios(id) ON DELETE CASCADE, 
-    FOREIGN KEY (productos_id) REFERENCES productos(id)
+    FOREIGN KEY (productos_id) REFERENCES productos(id) ON DELETE CASCADE
 );
 
 INSERT INTO usuarios (id, first_name, last_name, age, birth_date, email, contraseña)
