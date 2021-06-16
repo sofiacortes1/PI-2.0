@@ -15,7 +15,7 @@ CREATE TABLE productos (
     color VARCHAR(22) NOT NULL, 
     name_producto VARCHAR(20) NOT NULL, 
     usuarios_id INT UNSIGNED, 
-    FOREIGN KEY (usuarios_id) REFERENCES usuarios(id), 
+    FOREIGN KEY (usuarios_id) REFERENCES usuarios(id) ON DELETE CASCADE, 
     fecha DATE NOT NULL,
     imagen VARCHAR(300)
 );
@@ -26,7 +26,7 @@ CREATE TABLE comentarios (
     fecha DATE NOT NULL, 
     usuarios_id INT UNSIGNED, 
 	productos_id INT UNSIGNED, 
-    FOREIGN KEY (usuarios_id) REFERENCES usuarios(id), 
+    FOREIGN KEY (usuarios_id) REFERENCES usuarios(id) ON DELETE CASCADE, 
     FOREIGN KEY (productos_id) REFERENCES productos(id)
 );
 
@@ -210,17 +210,26 @@ VALUES (DEFAULT, 'estupendo!', '2021-10-15', 4, 10);
 ALTER TABLE usuarios
 MODIFY contraseña VARCHAR(400);
 
+SELECT * from productos; 
+
 ALTER TABLE productos
 ADD descrpicion VARCHAR(400);
 
 ALTER TABLE comentarios 
 ADD createdAt TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP, 
-ADD updateAt TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP; 
+ADD updatedAt TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP; 
 
 ALTER TABLE usuarios 
 ADD createdAt TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP, 
-ADD updateAt TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP; 
+ADD updatedAt TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP; 
 
 ALTER TABLE productos 
 ADD createdAt TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP, 
-ADD updateAt TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP; 
+ADD updatedAt TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP; 
+
+
+
+
+drop table usuarios; 
+DROP TABLE comentarios; 
+DROP TABLE productos; 
