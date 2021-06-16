@@ -24,13 +24,22 @@ module.exports = (sequelize, dataTypes) => {
         contraseña: {
             type: dataTypes.STRING
         }
-  
-  
     },
     {
         tableName: "usuarios",
        timestamps: true
     });
+    Usu.associate = (db) => {
+        Usu.hasMany(db.Producto, {
+            as: 'productos',
+            foreignKey: 'usuarios_id'
+
+        })
+         Usu.hasMany(db.Comentario, {
+             as: 'comentarios',
+             foreignKey: 'usuarios_id'
+         })
+    }
 
    return Usu;
 

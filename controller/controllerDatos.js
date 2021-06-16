@@ -11,6 +11,11 @@ let controladorDatos =  {
 
     profile: (req,res) =>{
         res.render('profile');
+        const filtro = {
+            include: [
+                {assosiation: 'productos', include: 'pusuario'}
+            ]
+        }
     },
 
     profileEdits: (req,res) =>{
@@ -56,9 +61,7 @@ let controladorDatos =  {
             res.redirect('login' );
         }).catch(error=>console.log(error));
 
-        
-        
-
+    
     },
 
     loginValidate: (req, res) => {
