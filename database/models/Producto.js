@@ -6,17 +6,11 @@ module.exports = (sequelize, dataTypes) => {
             primaryKey: true,
             type: dataTypes.INTEGER
         },
-        color: {
-            type: dataTypes.STRING
-        },
         name_producto: {
             type: dataTypes.STRING
         },
         usuarios_id: {
             type: dataTypes.INTEGER  // chequear foring key
-        },
-        fecha: {
-            type: dataTypes.DATE 
         },
         imagen: {
             type: dataTypes.STRING

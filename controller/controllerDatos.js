@@ -34,10 +34,10 @@ let controladorDatos =  {
         } else {
             title= 'Esto encontramos para vos!'
         };
-        
+
         let filtro ={
             where:[{
-                name_producto: req.query.search
+                name_producto: req.query.search, 
             }]
         }; 
 

@@ -35,7 +35,7 @@ let controladorIndex =  {
 
     crearProducto: (req, res) => {
         db.Producto.create({
-        color: req.body.color,
+        descripcion: req.body.descripcion,
         name_producto: req.body.modelo,
         fecha: req.body.fecha,
        }).then(productoCreado =>{ 
@@ -48,11 +48,12 @@ let controladorIndex =  {
         res.clearCookie('userId');
         res.redirect('/');
     },
+    
     AgregarComentario: (req, res) => {
         db.Comentario.create({
             texto: req.body.agregar,
         }).then(comentarioAgregado =>{
-            res.redirect('/products/' )
+            res.redirect('/products/')
         }).catch(error => console.log(error));
 
     }
