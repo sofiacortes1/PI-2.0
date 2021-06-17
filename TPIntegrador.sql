@@ -6,18 +6,23 @@ CREATE TABLE usuarios (
     last_name VARCHAR(30) NOT NULL, 
     age TINYINT UNSIGNED NOT NULL, 
     birth_date DATE NOT NULL, 
-    email VARCHAR(55) NOT NULL, 
-    contraseña VARCHAR(55) NOT NULL
+    email VARCHAR(55) NOT NULL UNIQUE, 
+    contraseña VARCHAR(400) NOT NULL,
+    createdAt TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    updatedAt TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
 
 CREATE TABLE productos (
 	id INT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
     color VARCHAR(22) NOT NULL, 
+    descripcion VARCHAR (400),
     name_producto VARCHAR(20) NOT NULL, 
     usuarios_id INT UNSIGNED, 
     FOREIGN KEY (usuarios_id) REFERENCES usuarios(id) ON DELETE CASCADE, 
     fecha DATE NOT NULL,
-    imagen VARCHAR(300)
+    imagen VARCHAR(300),
+    createdAt TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    updatedAt TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
 
 CREATE TABLE comentarios ( 
@@ -27,7 +32,9 @@ CREATE TABLE comentarios (
     usuarios_id INT UNSIGNED, 
 	productos_id INT UNSIGNED, 
     FOREIGN KEY (usuarios_id) REFERENCES usuarios(id) ON DELETE CASCADE, 
-    FOREIGN KEY (productos_id) REFERENCES productos(id) ON DELETE CASCADE
+    FOREIGN KEY (productos_id) REFERENCES productos(id) ON DELETE CASCADE,
+    createdAt TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    updatedAt TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
 
 INSERT INTO usuarios (id, first_name, last_name, age, birth_date, email, contraseña)
@@ -47,34 +54,34 @@ VALUES (DEFAULT, 'Ariana', 'Umaschi', '19', '2002-09-24','aumaschi@udesa.edu.ar'
 
 
 
-INSERT INTO productos (id, color, name_producto, usuarios_id, fecha, imagen, descrpicion)
+INSERT INTO productos (id, color, name_producto, usuarios_id, fecha, imagen, descripcion)
 VALUES (DEFAULT, 'Blanco', 'A1', 1, '2005-06-21', '/images/products/audi_a1_2010_3859_1.jpg', 'A1 es un auto muy rapido');
 
-INSERT INTO productos (id, color, name_producto, usuarios_id, fecha, imagen, descrpicion)
+INSERT INTO productos (id, color, name_producto, usuarios_id, fecha, imagen, descripcion)
 VALUES (DEFAULT, 'Verde', 'Q3', 2, '2007-03-04', '/images/products/maxresdefault2.jpg', 'Q3 es un auto muy rapido');
 
-INSERT INTO productos (id, color, name_producto, usuarios_id, fecha, imagen, descrpicion)
+INSERT INTO productos (id, color, name_producto, usuarios_id, fecha, imagen, descripcion)
 VALUES (DEFAULT, 'Blanco', 'TT', 3, '2003-05-13', '/images/products/abt_tt_rs-r_8s00_500ps_2016_0013.jpg','TT es un auto muy rapido' );
 
-INSERT INTO productos (id, color, name_producto, usuarios_id, fecha, imagen, descrpicion)
+INSERT INTO productos (id, color, name_producto, usuarios_id, fecha, imagen, descripcion)
 VALUES (DEFAULT, 'Negro', 'Q7', 4, '2004-07-12', '/images/products/audi-q7-2020-soymotor4.jpg', 'Q7 es un auto muy rapido');
 
-INSERT INTO productos (id, color, name_producto, usuarios_id, fecha, imagen, descrpicion)
+INSERT INTO productos (id, color, name_producto, usuarios_id, fecha, imagen, descripcion)
 VALUES (DEFAULT, 'Gris', 'Q2', 5, '2006-01-11', '/images/products/Audi-Q2-2021-delantera5.jpg', 'Q2 es un auto muy rapido');
 
-INSERT INTO productos (id, color, name_producto, usuarios_id, fecha, imagen, descrpicion)
+INSERT INTO productos (id, color, name_producto, usuarios_id, fecha, imagen, descripcion)
 VALUES (DEFAULT, 'Negro', 'Q4', 1, '2005-05-15', '/images/products/RT_V_b3c93508b22c40eea8f7dc357b02394e6.jpg', 'Q4 es un auto muy rapido');
 
-INSERT INTO productos (id, color, name_producto, usuarios_id, fecha, imagen, descrpicion)
+INSERT INTO productos (id, color, name_producto, usuarios_id, fecha, imagen, descripcion)
 VALUES (DEFAULT, 'Negro', 'A3', 2, '2006-06-16', '/images/products/84D649A6-22F4-4F8B-B7CB-F9B0ACFCE454_1_201_a7.jpg', 'A3 es un auto muy rapido');
 
-INSERT INTO productos (id, color, name_producto, usuarios_id, fecha, imagen, descrpicion)
+INSERT INTO productos (id, color, name_producto, usuarios_id, fecha, imagen, descripcion)
 VALUES (DEFAULT, 'Negro', 'Q5', 3, '2007-07-17', '/images/products/NAZ_a2bcb6114bd44504b30cf497a09dd31d8.jpg', 'Q5 es un auto muy rapido');
 
-INSERT INTO productos (id, color, name_producto, usuarios_id, fecha, imagen, descrpicion)
+INSERT INTO productos (id, color, name_producto, usuarios_id, fecha, imagen, descripcion)
 VALUES (DEFAULT, 'Gris', 'A7', 4, '2008-08-18', '/images/products/A7 audi.jpeg', 'A7 es un auto muy rapido');
 
-INSERT INTO productos (id, color, name_producto, usuarios_id, fecha, imagen,descrpicion)
+INSERT INTO productos (id, color, name_producto, usuarios_id, fecha, imagen,descripcion)
 VALUES (DEFAULT, 'Gris', 'A5', 5, '2007-07-17', '/images/products/A5audi.jpeg', 'A5 es un auto muy rapido');
 
 
@@ -206,30 +213,3 @@ VALUES (DEFAULT, 'lindo auto!', '2021-11-12', 3, 10);
 
 INSERT INTO comentarios (id, texto, fecha, usuarios_id, productos_id )
 VALUES (DEFAULT, 'estupendo!', '2021-10-15', 4, 10);
-
-ALTER TABLE usuarios
-MODIFY contraseña VARCHAR(400);
-
-SELECT * from productos; 
-
-ALTER TABLE productos
-ADD descrpicion VARCHAR(400);
-
-ALTER TABLE comentarios 
-ADD createdAt TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP, 
-ADD updatedAt TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP; 
-
-ALTER TABLE usuarios 
-ADD createdAt TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP, 
-ADD updatedAt TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP; 
-
-ALTER TABLE productos 
-ADD createdAt TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP, 
-ADD updatedAt TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP; 
-
-
-
-
-drop table usuarios; 
-DROP TABLE comentarios; 
-DROP TABLE productos; 
