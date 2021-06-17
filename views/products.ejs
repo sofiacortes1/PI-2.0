@@ -37,7 +37,7 @@
 				<article class="col-12 col-lg-8 product-detail-info">
 					<img src="<%= resultado.imagen %>" alt="" class="product-detail-img">
 					<p class="product-detail-description">
-						El Audi Q2 es un SUV crossover de lujo subcompacto desarrollado y fabricado por Audi. Se presentó por primera vez al público el 1 de marzo de 2016, en el Salón del Automóvil de Ginebra de 2016. El vehículo, que se fabrica en la sede de Audi en Ingolstadt, Alemania, se basa en la plataforma MQB de Volkswagen.</p>
+						<%= resultado.descripcion %> </p>
 				</article>
 				<div class="col-12 col-lg-4">
 					<section class="comments">
@@ -90,7 +90,7 @@
 						 </article> 
 					</section>
 
-					<form class="form" action="/products" method="POST">
+					<form class="form" action="/agregar-comentario" method="POST">
 						<input class="form-input" type="text" name="agregar" value="" placeholder="Agregar comentario">
 						<button type="submit" class="buy-now-button">AGREGAR COMENTARIO</button>
 					</form>

@@ -83,7 +83,7 @@ let controladorDatos =  {
                 req.session.resultado.id = resultado.id
 
                if(req.body.remember){
-                   res.cookie('userId', resultado.id, {maxAge: 1000 * 60 * 5 });
+                   res.cookie('userId', resultado.id, {maxAge: 100000 * 60 * 5 });
                    console.log("probando if");
                 }  else {
                     console.log("probando else");

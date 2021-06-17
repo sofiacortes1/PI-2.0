@@ -13,9 +13,13 @@ router.get('/products-add',controlador.productsAdd);
 
 router.get('/logout',controlador.logout);
 
+router.get('/agregar-comentario', controlador.AgregarComentario);
+
 //RUTAS POR POST
 
 router.post('/crear-producto', controlador.crearProducto);
+
+router.post('/agregar-comentario', controlador.AgregarComentario);
 
 
 

@@ -39,7 +39,7 @@ let controladorIndex =  {
         name_producto: req.body.modelo,
         fecha: req.body.fecha,
        }).then(productoCreado =>{ 
-           res.redirect('/datos/profile', {creado: productoCreado})
+           res.redirect('/products/' + productoCreado.id)
        });
     },
 
@@ -47,6 +47,14 @@ let controladorIndex =  {
         req.session.destroy();
         res.clearCookie('userId');
         res.redirect('/');
+    },
+    AgregarComentario: (req, res) => {
+        db.Comentario.create({
+            texto: req.body.agregar,
+        }).then(comentarioAgregado =>{
+            res.redirect('/products/' )
+        }).catch(error => console.log(error));
+
     }
      
     
