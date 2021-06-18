@@ -15,11 +15,20 @@ router.get('/logout',controlador.logout);
 
 router.get('/agregar-comentario', controlador.AgregarComentario);
 
+router.get('/borrar-producto', controlador.borrarProducto);
+
+router.get('/editar-producto', controlador.editarProducto);
+
 //RUTAS POR POST
 
 router.post('/crear-producto', controlador.crearProducto);
 
 router.post('/agregar-comentario', controlador.AgregarComentario);
+
+router.post('/editar-producto', controlador.editarProducto);
+
+router.post('/borrar-producto', controlador.borrarProducto);
+
 
 
 

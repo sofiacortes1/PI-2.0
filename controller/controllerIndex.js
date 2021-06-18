@@ -3,7 +3,7 @@ const Op = db.Sequelize.Op;
 
 let controladorIndex =  {
     index: (req,res) =>{
-
+        
         db.Producto.findAll().then(todo =>{
             console.log(todo);
             if (req.session.resultado){
@@ -56,7 +56,24 @@ let controladorIndex =  {
             res.redirect('/products/')
         }).catch(error => console.log(error));
 
-    }
+    },
+    
+    borrarProducto: (req, res) => {
+        db.Producto.destroy({
+            where: {
+                id: req.body.borrar
+            }
+        }).then(() => {
+            res.redirect('/')
+        }).catch(error => console.log(error));
+    },
+
+    editarProducto: (req, res) => {
+        db.Producto.findByPk(req.query.id).then(productoEditado =>{
+            res.render('products', {producto: productoEditado})
+        })
+    },
+
      
     
 

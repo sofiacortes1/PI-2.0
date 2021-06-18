@@ -27,7 +27,7 @@ module.exports = (sequelize, dataTypes) => {
     },
     {
         tableName: "usuarios",
-       timestamps: true
+        timestamps: true
     });
     Usu.associate = (db) => {
         Usu.hasMany(db.Producto, {

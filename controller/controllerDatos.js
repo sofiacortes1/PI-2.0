@@ -13,9 +13,16 @@ let controladorDatos =  {
         res.render('profile');
         const filtro = {
             include: [
-                {assosiation: 'productos', include: 'pusuario'}
-            ]
+                {assosiation: 'pusuario', include: 'productos'}
+            ],
         }
+
+        db.Usuariio.findByPk(req.query.id).then(relacion =>{
+            console.log(relacion.toJSON());
+            
+        })
+
+
     },
 
     profileEdits: (req,res) =>{
@@ -37,13 +44,15 @@ let controladorDatos =  {
 
         let filtro ={
             where:[{
-                name_producto: req.query.search, 
+                [Op.and]: [{name_producto: req.query.search} , {descripcion: {[Op.like]: '%' + buscador + '%'  }}]
             }]
         }; 
 
         db.Producto.findAll(filtro).then(respuesta =>{
+            console.log(filtro);
+            
             res.render('search-results', {lista: respuesta, title: title});
-        });
+        }).catch(error=>console.log(error));
     
     },
 
