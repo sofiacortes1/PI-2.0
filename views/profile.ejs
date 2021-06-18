@@ -34,9 +34,14 @@
 			<div class="data-container col-6">
 				<div class="d-flex align-items-center ">
 					<h1 class="main-title">  <%= usuario.first_name  %> 
+						<% if (usuarioLogueado ) { %> 
 						<a href="/datos/profileEdits">
 							<i class="fas fa-cog"></i>
 						</a>
+						<% } else { %>
+							<% } %>
+
+
 					</h1>
 				</div>
 				<div>

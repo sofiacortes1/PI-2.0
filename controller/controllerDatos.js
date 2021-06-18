@@ -18,8 +18,8 @@ let controladorDatos =  {
         }
 
         db.Usuariio.findByPk(req.query.id).then(relacion =>{
-            console.log(relacion.toJSON());
-            
+            console.log(relacion.toJSON()); // seguir
+  
         })
 
 
