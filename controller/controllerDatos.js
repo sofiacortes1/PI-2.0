@@ -44,7 +44,9 @@ let controladorDatos =  {
 
         let filtro ={
             where:[{
-                [Op.and]: [{name_producto: req.query.search} , {descripcion: {[Op.like]: '%' + buscador + '%'  }}]
+                [Op.or]: 
+                [{name_producto: buscador } , 
+                {descripcion: {[Op.like]: '%' + buscador + '%'  }}]
             }]
         }; 
 

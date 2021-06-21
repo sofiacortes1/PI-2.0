@@ -3,14 +3,30 @@ const Op = db.Sequelize.Op;
 
 let controladorIndex =  {
     index: (req,res) =>{
-        
-        db.Producto.findAll().then(todo =>{
-            console.log(todo);
+        // dos filtros (uno para nuevos y otro para viejos) dos variables, todoNuevos, todoViejos
+        let filtroNuevo = {
+            order: [
+                [ 'createdAt' , 'ASC'], 
+            ], 
+
+            limit: 4
+        }
+
+        let filtroViejo = {
+            order: [
+                [ 'createdAt' , 'DESC'], 
+            ], 
+
+            limit: 4
+        }
+
+        db.Producto.findAll(filtroNuevo , filtroViejo).then(todoNuevo =>{
+            
             if (req.session.resultado){
-                res.render('index', {usuario: req.session.resultado, productos: todo});
+                res.render('index', {usuario: req.session.resultado, productos: todoNuevo});
             }
             else {
-                res.render('index', {usuario: "anonimo", productos: todo });
+                res.render('index', {usuario: "anonimo", productos: todoNuevo });
             } 
         }).catch(error => console.log(error));
 
