@@ -48,45 +48,44 @@
 			<h2 class="products-title">Los mas nuevos</h2>
 			</div>
 			<!-- Show the "ultimos" products -->
-			<% productos.forEach(producto => { %>
-				<% console.log("Productos en index: " + productos) %>
+			<% productosNuevos.forEach(productoNuevo => { %>
+				<% console.log("Productos en index: " + productosNuevos) %>
 
 				<div class="col-12 col-sm-6 col-lg-3">
 					<section class="product-box">
-						<a href="/products/<%= producto.id %>  ">
+						<a href="/products/<%= productoNuevo.id %>  ">
 							<figure class="product-box_image">
-								<img src=" <%= producto.imagen %>" alt="cafetera moulinex">
+								<img src=" <%= productoNuevo.imagen %>" alt="cafetera moulinex">
 							</figure>
 							<article class="product-box_data">
 								<h2> </h2>
-								<p> <%= producto.descripcion %> </p>
+								<p> <%= productoNuevo.descripcion %> </p>
 								<p>Comentarios: 12</p>
 							</article>
 						</a>
 					</section>
+				</div>
+			<% }) %> 
 
-					<h2 class="products-title">Los mas viejos</h2>
-			</div>
+			<h2 class="products-title">Los mas viejos</h2>
+			
 			<!-- Show the "ultimos" products -->
-			<% productos.forEach(producto => { %>
-				<% console.log("Productos en index: " + productos) %>
+			<% productosViejos.forEach(productoViejo => { %>
+				<% console.log("Productos en index: " + productosViejos) %>
 
 				<div class="col-12 col-sm-6 col-lg-3">
 					<section class="product-box">
-						<a href="/products/<%= producto.id %>  ">
+						<a href="/products/<%= productoViejo.id %>  ">
 							<figure class="product-box_image">
-								<img src=" <%= producto.imagen %>" alt="cafetera moulinex">
+								<img src=" <%= productoViejo.imagen %>" alt="cafetera moulinex">
 							</figure>
 							<article class="product-box_data">
 								<h2> </h2>
-								<p> <%= producto.descripcion %> </p>
+								<p> <%= productoViejo.descripcion %> </p>
 								<p>Comentarios: 12</p>
 							</article>
 						</a>
 					</section>
-					
-
-
 				</div>
 
 

@@ -20,14 +20,16 @@ let controladorIndex =  {
             limit: 4
         }
 
-        db.Producto.findAll(filtroNuevo , filtroViejo).then(todoNuevo =>{
+        db.Producto.findAll(filtroNuevo).then(todoNuevo =>{
+            db.Producto.findAll(filtroViejo).then(todoViejo =>{
+                if (req.session.resultado){
+                    res.render('index', {usuario: req.session.resultado, productosNuevos: todoNuevo, productosViejos: todoViejo });
+                }
+                else {
+                    res.render('index', {usuario: "anonimo", productosNuevos: todoNuevo, productosViejos: todoViejo });
+                } 
+            })
             
-            if (req.session.resultado){
-                res.render('index', {usuario: req.session.resultado, productos: todoNuevo});
-            }
-            else {
-                res.render('index', {usuario: "anonimo", productos: todoNuevo });
-            } 
         }).catch(error => console.log(error));
 
     },
