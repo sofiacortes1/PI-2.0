@@ -7,7 +7,7 @@ let controlador = require('../controller/controllerIndex');
 
 const guardar = multer.diskStorage({
     destination: (req, file, cb) =>{
-        let rutaDirectorio = 'public/images/subidas';
+        let rutaDirectorio = 'public/images/products';
         cb(null, rutaDirectorio);
     },
     filename:(req, file, cb)=> {
