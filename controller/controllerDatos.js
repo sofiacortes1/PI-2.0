@@ -10,20 +10,21 @@ let controladorDatos =  {
     },
 
     profile: (req,res) =>{
-        res.render('profile');
+        let id = req.params.id;
         const filtro = {
             include: [
-                {assosiation: 'pusuario', include: 'productos'}
+                {assosiation: 'productos', include: 'pcomentarios'},
+                {assosiation: 'pcomentarios'}
             ],
         }
 
-        db.Usuariio.findByPk(req.query.id).then(relacion =>{
-            console.log(relacion.toJSON()); // seguir
+        db.Usuario.findByPk(id, filtro).then(usuarios =>{
+            console.log(id);
             
-  
-        })
-
-
+           res.render('profile', {usuarios: usuarios})
+           console.log(JSON.stringify(usuarios, null, 10));
+        }).catch(error=>{console.log(error)})
+    
     },
 
     profileEdits: (req,res) =>{

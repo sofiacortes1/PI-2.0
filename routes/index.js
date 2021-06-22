@@ -1,7 +1,25 @@
 var express = require('express');
 var router = express.Router();
+const multer = require('multer');
+const path = require('path');
 
 let controlador = require('../controller/controllerIndex');
+
+const guardar = multer.diskStorage({
+    destination: (req, file, cb) =>{
+        let rutaDirectorio = 'public/images/subidas';
+        cb(null, rutaDirectorio);
+    },
+    filename:(req, file, cb)=> {
+        let nombreArchivo = file.fieldname + '-' + Date.now() + path.extname(file.originalname);
+        cb(null, nombreArchivo);
+    }
+});
+
+const upload = multer ({
+    storage: guardar
+});
+
 
 router.get('/',controlador.index);
 
@@ -21,15 +39,13 @@ router.get('/editar-producto', controlador.editarProducto);
 
 //RUTAS POR POST
 
-router.post('/crear-producto', controlador.crearProducto);
+router.post('/crear-producto', upload.single('imagen'), controlador.crearProducto);
 
 router.post('/agregar-comentario', controlador.AgregarComentario);
 
 router.post('/editar-producto', controlador.editarProducto);
 
 router.post('/borrar-producto', controlador.borrarProducto);
-
-
 
 
 

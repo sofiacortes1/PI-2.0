@@ -6,7 +6,7 @@ let controladorIndex =  {
         // dos filtros (uno para nuevos y otro para viejos) dos variables, todoNuevos, todoViejos
         let filtroNuevo = {
             order: [
-                [ 'createdAt' , 'ASC'], 
+                [ 'createdAt' , 'DESC'], 
             ], 
 
             limit: 4
@@ -14,7 +14,7 @@ let controladorIndex =  {
 
         let filtroViejo = {
             order: [
-                [ 'createdAt' , 'DESC'], 
+                [ 'createdAt' , 'ASC'], 
             ], 
 
             limit: 4
@@ -55,8 +55,10 @@ let controladorIndex =  {
         db.Producto.create({
         descripcion: req.body.descripcion,
         name_producto: req.body.modelo,
-        fecha: req.body.fecha,
+        imagen: req.file.filename,
        }).then(productoCreado =>{ 
+           console.log(productoCreado);
+           
            res.redirect('/products/' + productoCreado.id)
        });
     },

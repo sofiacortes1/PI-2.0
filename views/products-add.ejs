@@ -39,14 +39,17 @@
 			<!-- Show the "ultimos" products -->
 			<div class="formulario">
 				<h2 class="col-12"> 
-					<form action="/crear-producto" method="POST">
+					<form action="/crear-producto" method="POST" enctype= 'multipart/form-data' >
 
 						<p>Descripcion: </p>
 						<input type="text" name="descripcion" required>
 
 						<p>Modelo: </p>
 						<input type="text" name="modelo" required>
-				
+
+						<p>Imagen: </p>
+						<input type="file" name="imagen" required>
+
 						<p>  <input type="submit" value="Submit"> </p>
 
 					</form>

@@ -52,34 +52,34 @@ VALUES (DEFAULT, 'Ariana', 'Umaschi', '19', '2002-09-24','aumaschi@udesa.edu.ar'
 
 
 INSERT INTO productos (id, name_producto, usuarios_id, imagen, descripcion)
-VALUES (DEFAULT, 'A1', 1, '/images/products/audi_a1_2010_3859_1.jpg', 'A1 es un auto muy rapido');
+VALUES (DEFAULT, 'A1', 1, 'audi_a1_2010_3859_1.jpg', 'A1 es un auto muy rapido');
 
 INSERT INTO productos (id,  name_producto, usuarios_id,  imagen, descripcion)
-VALUES (DEFAULT,  'Q3', 2,  '/images/products/maxresdefault2.jpg', 'Q3 es un auto muy rapido');
+VALUES (DEFAULT,  'Q3', 2,  'maxresdefault2.jpg', 'Q3 es un auto muy rapido');
 
 INSERT INTO productos (id,  name_producto, usuarios_id,  imagen, descripcion)
-VALUES (DEFAULT,  'TT', 3, '/images/products/abt_tt_rs-r_8s00_500ps_2016_0013.jpg','TT es un auto muy rapido' );
+VALUES (DEFAULT,  'TT', 3, 'abt_tt_rs-r_8s00_500ps_2016_0013.jpg','TT es un auto muy rapido' );
 
 INSERT INTO productos (id,  name_producto, usuarios_id,  imagen, descripcion)
-VALUES (DEFAULT,  'Q7', 4,  '/images/products/audi-q7-2020-soymotor4.jpg', 'Q7 es un auto muy rapido');
+VALUES (DEFAULT,  'Q7', 4,  'audi-q7-2020-soymotor4.jpg', 'Q7 es un auto muy rapido');
 
 INSERT INTO productos (id,  name_producto, usuarios_id,  imagen, descripcion)
-VALUES (DEFAULT, 'Q2', 5,  '/images/products/Audi-Q2-2021-delantera5.jpg', 'Q2 es un auto muy rapido');
+VALUES (DEFAULT, 'Q2', 5,  'Audi-Q2-2021-delantera5.jpg', 'Q2 es un auto muy rapido');
 
 INSERT INTO productos (id,  name_producto, usuarios_id,  imagen, descripcion)
-VALUES (DEFAULT,  'Q4', 1,  '/images/products/RT_V_b3c93508b22c40eea8f7dc357b02394e6.jpg', 'Q4 es un auto muy rapido');
+VALUES (DEFAULT,  'Q4', 1,  'RT_V_b3c93508b22c40eea8f7dc357b02394e6.jpg', 'Q4 es un auto muy rapido');
 
 INSERT INTO productos (id,  name_producto, usuarios_id,  imagen, descripcion)
-VALUES (DEFAULT,  'A3', 2,  '/images/products/84D649A6-22F4-4F8B-B7CB-F9B0ACFCE454_1_201_a7.jpg', 'A3 es un auto muy rapido');
+VALUES (DEFAULT,  'A3', 2,  '84D649A6-22F4-4F8B-B7CB-F9B0ACFCE454_1_201_a7.jpg', 'A3 es un auto muy rapido');
 
 INSERT INTO productos (id,  name_producto, usuarios_id,  imagen, descripcion)
-VALUES (DEFAULT,  'Q5', 3,  '/images/products/NAZ_a2bcb6114bd44504b30cf497a09dd31d8.jpg', 'Q5 es un auto muy rapido');
+VALUES (DEFAULT,  'Q5', 3,  'NAZ_a2bcb6114bd44504b30cf497a09dd31d8.jpg', 'Q5 es un auto muy rapido');
 
 INSERT INTO productos (id,  name_producto, usuarios_id,  imagen, descripcion)
-VALUES (DEFAULT,  'A7', 4,  '/images/products/A7 audi.jpeg', 'A7 es un auto muy rapido');
+VALUES (DEFAULT,  'A7', 4,  'A7 audi.jpeg', 'A7 es un auto muy rapido');
 
 INSERT INTO productos (id,  name_producto, usuarios_id,  imagen,descripcion)
-VALUES (DEFAULT,  'A5', 5, '/images/products/A5audi.jpeg', 'A5 es un auto muy rapido');
+VALUES (DEFAULT,  'A5', 5, 'A5audi.jpeg', 'A5 es un auto muy rapido');
 
 
 INSERT INTO comentarios (id, texto, usuarios_id, productos_id )
