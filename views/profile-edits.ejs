@@ -45,7 +45,7 @@
 			<div class="formulario"> 
 				<h2 class="col-12"> 
 				
-					<form action="/datos/profile">
+					<form action="/datos/profile-edits" method="POST">
 	
 						<p>Nombre: </p>
 						<input type="text" name="name" >
@@ -55,6 +55,9 @@
 	
 						<p>Contraseña: </p>
 						<input type="password" name="password" >
+
+						<p>Imagen: </p>
+						<input type="file" name="imagenProfile" required>
 	
 						<p>  <input type="submit" value="Submit"> </p>
 	

@@ -36,8 +36,8 @@ module.exports = (sequelize, dataTypes) => {
 
         })
          Usu.hasMany(db.Comentario, {
-             as: 'comentarios',
-             foreignKey: 'usuarios_id'
+            as: 'comentarios',
+            foreignKey: 'usuarios_id'
          })
     }
 

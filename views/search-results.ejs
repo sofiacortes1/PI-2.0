@@ -43,7 +43,7 @@
 				
 				<!-- Show the "ultimos" products -->
 				<% lista.forEach(element => {%>
-					<img src="<%= element.imagen %>" alt="">
+					<a href="/products/<%= element.id %>  "><img src="/images/products/<%= element.imagen%>" alt=""></a>
 				<% }) %>
 			</div>
 		</div>
@@ -53,7 +53,8 @@
 				
 				<!-- Show the "ultimos" products -->
 				<% lista.forEach(resultado => {%>
-					<img src="<%= resultado.descripcion %>" alt="">
+					<a href="/products/<%= resultado.id %>  "><img src="/<%= resultado.descripcion %>" alt=""></a>
+					
 				<% }) %>
 			</div>
 		</div>

@@ -10,7 +10,7 @@ let controladorDatos =  {
     },
 
     profile: (req,res) =>{
-        let id = req.params.id;
+        let id = req.query.id;
         const filtro = {
             include: [
                 {assosiation: 'productos', include: 'pcomentarios'},
@@ -19,10 +19,8 @@ let controladorDatos =  {
         }
 
         db.Usuario.findByPk(id, filtro).then(usuarios =>{
-            console.log(id);
-            
            res.render('profile', {usuarios: usuarios})
-           console.log(JSON.stringify(usuarios, null, 10));
+          console.log(JSON.stringify(usuarios, null, 10));
         }).catch(error=>{console.log(error)})
     
     },
@@ -63,18 +61,22 @@ let controladorDatos =  {
     registerCreateUser: (req,res) => {
         let passEncriptada = bcrypt.hashSync(req.body.pass);
 
-        db.Usuario.create({
-            first_name: req.body.name,
-            last_name: req.body.lname,
-            email: req.body.email,
-            contraseña: passEncriptada,
-            age: req.body.age,
-            birth_date: req.body.date
-        }).then(usuario => {
-            res.redirect('login' );
-        }).catch(error=>console.log(error));
+        if(email.include('@')){
+            db.Usuario.create({
+                first_name: req.body.name,
+                last_name: req.body.lname,
+                email: req.body.email,
+                contraseña: passEncriptada,
+                age: req.body.age,
+                birth_date: req.body.date
+            }).then(usuario => {
+                res.redirect('login' );
+            }).catch(error => console.log(error))
+        } else {
+            res.render('register', {error: 'No pusiste email'})
+        }
 
-    
+        
     },
 
     loginValidate: (req, res) => {
@@ -109,6 +111,10 @@ let controladorDatos =  {
            res.redirect('/datos/profile')
         }) 
         .catch(error => console.log(error))
+    }, 
+
+    profileModify:(req,res) =>{
+
     }
 
 };
