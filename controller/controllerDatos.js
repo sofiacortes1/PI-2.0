@@ -10,14 +10,16 @@ let controladorDatos =  {
     },
 
     profile: (req,res) =>{
-        let id = req.query.id;
+        let id = req.params.id;
         const filtro = {
             include: [
-                {assosiation: 'productos', include: 'pcomentarios'},
-                {assosiation: 'pcomentarios'}
+                
+                {association: 'comentario'},
+                {association: 'producto'}
+                
+            
             ],
         }
-
         db.Usuario.findByPk(id, filtro).then(usuarios =>{
            res.render('profile', {usuarios: usuarios})
           console.log(JSON.stringify(usuarios, null, 10));
@@ -108,7 +110,7 @@ let controladorDatos =  {
                 
             }
 
-           res.redirect('/datos/profile')
+           res.redirect('/datos/profile/' + resultado.id)
         }) 
         .catch(error => console.log(error))
     }, 

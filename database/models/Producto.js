@@ -25,12 +25,12 @@ module.exports = (sequelize, dataTypes) => {
     });
     Product.associate = (db) => {
         Product.hasMany(db.Comentario, {
-            as: 'pcomentarios',
+            as: 'comentario',
             foreignKey: 'productos_id'
 
         }) 
         Product.belongsTo(db.Usuario, {
-            as: 'pusuario',
+            as: 'usuario',
             foreignKey: 'usuarios_id'
         })
     } 

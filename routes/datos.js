@@ -21,7 +21,7 @@ const upload = multer ({
 });
 router.get('/login',controlador.login);  
 
-router.get('/profile',controlador.profile);
+router.get('/profile/:id',controlador.profile);
 
 router.get('/profileEdits',controlador.profileEdits);
 

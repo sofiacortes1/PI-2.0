@@ -9,10 +9,6 @@ module.exports = (sequelize, dataTypes) => {
         texto: {
             type: dataTypes.STRING
         },
-        fecha: {
-            type:dataTypes.DATE
-        },
-
     },
     {
      tableName: "comentarios",
@@ -20,11 +16,11 @@ module.exports = (sequelize, dataTypes) => {
     });
     Coment.associate = (db) => {
         Coment.belongsTo(db.Producto, {
-            as: 'cproducto',
+            as: 'producto',
             foreignKey: 'productos_id'
         })
         Coment.belongsTo(db.Usuario, {
-            as: 'cusuario',
+            as: 'usuario',
             foreignKey: 'usuarios_id'
         })
     } 
