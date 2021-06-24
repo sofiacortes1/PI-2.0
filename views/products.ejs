@@ -30,7 +30,7 @@
 			<h2 class="products-title"><%= resultado.name_producto %></h2> 
 			<p class="product-detail-description">
 				<% if (usuarioLogueado) { %> 
-				<form action="/editar-producto" method="POST" >
+				<form action="/producto-editar" method="POST" >
 					<input name="editar" type="hidden" value="<%= resultado.name_producto %>">
 					<input  type="submit" value="Editar">
 				</form>

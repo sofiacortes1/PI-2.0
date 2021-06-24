@@ -21,7 +21,7 @@ let controladorDatos =  {
             ],
         }
         db.Usuario.findByPk(id, filtro).then(usuarios =>{
-           res.render('profile', {usuarios: usuarios})
+           res.render('profile', {usuarios: usuarios,  })
           console.log(JSON.stringify(usuarios, null, 10));
         }).catch(error=>{console.log(error)})
     
@@ -62,8 +62,9 @@ let controladorDatos =  {
 
     registerCreateUser: (req,res) => {
         let passEncriptada = bcrypt.hashSync(req.body.pass);
-
-        if(email.include('@')){
+        //let i = 0;
+        if(req.body.email.includes('@')){
+            //if (passEncriptada.includes()
             db.Usuario.create({
                 first_name: req.body.name,
                 last_name: req.body.lname,
@@ -71,6 +72,7 @@ let controladorDatos =  {
                 contraseña: passEncriptada,
                 age: req.body.age,
                 birth_date: req.body.date
+
             }).then(usuario => {
                 res.redirect('login' );
             }).catch(error => console.log(error))

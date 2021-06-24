@@ -35,7 +35,7 @@ router.get('/agregar-comentario', controlador.AgregarComentario);
 
 router.get('/borrar-producto', controlador.borrarProducto);
 
-router.get('/editar-producto', controlador.editarProducto);
+router.get('/producto-editar', controlador.productoAEditar);
 
 //RUTAS POR POST
 
@@ -43,7 +43,7 @@ router.post('/crear-producto', upload.single('imagen'), controlador.crearProduct
 
 router.post('/agregar-comentario', controlador.AgregarComentario);
 
-router.post('/editar-producto', controlador.editarProducto);
+router.post('/producto-editar', controlador.productoAEditar);
 
 router.post('/borrar-producto', controlador.borrarProducto);
 

@@ -36,7 +36,11 @@ app.use(session({secret: "proyecto",
       console.log("entro?");
       
       db.Usuario.findByPk(req.cookies.userId).then(resultado => {
-        req.session.resultado = resultado.email;
+        req.session.resultado = {}
+                req.session.resultado.email = resultado.email;
+                req.session.resultado.first_name = resultado.first_name
+                req.session.resultado.id = resultado.id
+
         console.log('probando');
         
         return next();
@@ -52,6 +56,7 @@ app.use(function(req,res,next){
     res.locals = {
       usuarioLogueado: true, 
       usuario: req.session.resultado
+
     }
   } else {
     res.locals = {

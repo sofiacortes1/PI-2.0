@@ -36,10 +36,15 @@
 		<div class="row">
 			<div class="col-12">
 				<h2 class="products-title">Registrate</h2>
+				<% if (error){ %>
+					<span  class="products-title">	Hubo un error: <%= error %> </span>
+					<%  } %>
 			</div>
+		
 			<!-- Show the "ultimos" products -->
 			<div class="formulario">
 				<h2 class="col-12"> 
+					
 					<form action="/datos/register" method="POST" >
 
 						<p> Nombre: </p>
