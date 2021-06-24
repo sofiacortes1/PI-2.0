@@ -23,7 +23,10 @@ module.exports = (sequelize, dataTypes) => {
         },
         contraseña: {
             type: dataTypes.STRING
-        }
+        }, 
+        imagen: {
+            type: dataTypes.STRING
+        },
     },
     {
         tableName: "usuarios",

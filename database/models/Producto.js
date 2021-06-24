@@ -10,7 +10,7 @@ module.exports = (sequelize, dataTypes) => {
             type: dataTypes.STRING
         },
         usuarios_id: {
-            type: dataTypes.INTEGER  // chequear foring key
+            type: dataTypes.INTEGER  
         },
         imagen: {
             type: dataTypes.STRING

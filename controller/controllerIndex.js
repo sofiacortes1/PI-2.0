@@ -50,9 +50,23 @@ let controladorIndex = {
     },
 
     productDetalle: (req, res) => {
+        const filtro = {
+            include: [
+
+                {
+                    association: 'comentario'
+                },
+                {
+                    association: 'usuario',
+                    include: [{
+                        association: 'comentario'
+                    }]
+                }
+            ],
+        }
         let id = req.params.id;
         console.log(id);
-        db.Producto.findByPk(id).then(resultado => {
+        db.Producto.findByPk(id, filtro).then(resultado => {
             res.render('products', {
                 resultado: resultado
             });
@@ -81,8 +95,10 @@ let controladorIndex = {
     AgregarComentario: (req, res) => {
         db.Comentario.create({
             texto: req.body.agregar,
+            usuarios_id: req.session.resultado.id,
+            productos_id: req.params.id
         }).then(comentarioAgregado => {
-            res.redirect('/products/')
+            res.redirect('/products/' + req.params.id)
         }).catch(error => console.log(error));
 
     },
@@ -120,7 +136,7 @@ let controladorIndex = {
 
 
             });
-
+    
     }
 
 

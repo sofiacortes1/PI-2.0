@@ -15,9 +15,9 @@ let controladorDatos =  {
             include: [
                 
                 {association: 'comentario'},
-                {association: 'producto'}
-                
-            
+                {association: 'producto', include:[
+                    {association:'comentario'}
+                ]}
             ],
         }
         db.Usuario.findByPk(id, filtro).then(usuarios =>{
@@ -32,7 +32,7 @@ let controladorDatos =  {
     },
 
     register: (req,res) =>{
-        res.render('register');
+        res.render('register', {error: null});
     },
 
     searchResults: (req,res) =>{
@@ -61,10 +61,16 @@ let controladorDatos =  {
     },
 
     registerCreateUser: (req,res) => {
+        if (!req.body.name || !req.body.lname || !req.body.email || !req.body.date || !req.body.age || !req.body.pass ) {
+            res.render('register', {error: 'No puede haber campos vacios'})
+        }
+
         let passEncriptada = bcrypt.hashSync(req.body.pass);
-        //let i = 0;
+    
         if(req.body.email.includes('@')){
-            //if (passEncriptada.includes()
+            if(req.body.pass.length < 3){
+                res.render('register', {error: 'La contraseña debe tener mas de 3 digitos'})
+            }
             db.Usuario.create({
                 first_name: req.body.name,
                 last_name: req.body.lname,
@@ -118,8 +124,34 @@ let controladorDatos =  {
     }, 
 
     profileModify:(req,res) =>{
+        db.Usuario.findByPk(req.query.id).then(perfilAEditar => {
+            res.render('profile', {
+                perfil: perfilAEditar
+            })
+        })
+    }, 
+
+    profileUpdate: (req,res) =>{
+        db.Usuario.update({
+            first_name: req.body.name,
+            email: req.body.email,
+            contraseña: req.body.password, 
+            i
+
+        }, {
+            where: {
+                id: req.body.id
+            }
+        })
+        .then(() => {
+            res.redirect('/products')
+
+
+        });
 
     }
+
+
 
 };
 

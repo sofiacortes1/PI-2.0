@@ -36,9 +36,11 @@
 		<div class="row">
 			<div class="col-12">
 				<h2 class="products-title">Registrate</h2>
+
 				<% if (error){ %>
 					<span  class="products-title">	Hubo un error: <%= error %> </span>
-					<%  } %>
+
+				<%  } %>
 			</div>
 		
 			<!-- Show the "ultimos" products -->
@@ -51,7 +53,7 @@
 							<input type="text" name="name" id="" required>
 
 						<p> Apellido: </p>
-							<input type="text" name="lname" id="" required>
+							<input type="text" name="lname" id="" >
 
 						<p>Mail:</p>
 							<input type="text" name="email" id="" required>

@@ -9,6 +9,12 @@ module.exports = (sequelize, dataTypes) => {
         texto: {
             type: dataTypes.STRING
         },
+        usuarios_id:{
+            type: dataTypes.INTEGER 
+        }, 
+        productos_id:{
+            type: dataTypes.INTEGER 
+        }
     },
     {
      tableName: "comentarios",
