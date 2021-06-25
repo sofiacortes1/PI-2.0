@@ -44,7 +44,9 @@
 				<br>
 				<br>
 				<br>
-				<p class="usuario-welcome"> Bienvenid@ <%= locals.usuario.first_name  %> </p>
+				<% if (usuarioLogueado) { %>
+				<p class="usuario-welcome"> Bienvenid@ <%= miUsuario.first_name  %> </p>
+				<% } %> 
 				
 			<h2 class="products-title">Los mas nuevos</h2>
 			
@@ -62,7 +64,7 @@
 							<article class="product-box_data">
 								<h2> </h2>
 								<p> <%= productoNuevo.descripcion %> </p>
-								<p>Comentarios: <%= productoNuevo.usuario %> </p>
+								<p>Comentarios: <%= productoNuevo.comentario.length %> </p>
 							</article>
 						</a>
 					</section>
@@ -100,7 +102,7 @@
 							<article class="product-box_data">
 								<h2> </h2>
 								<p> <%= productoViejo.descripcion %> </p>
-								<p>Comentarios: 12</p>
+								<p>Comentarios: <%= productoViejo.comentario.length %></p>
 							</article>
 						</a>
 					</section>

@@ -23,68 +23,50 @@
 </head>
 
 <body>
-	<!-- Header -->
-
-<body>
-
 	<% if (usuarioLogueado) { %> 
 		<%- include('./partials/headerLogueado.ejs') %>
 		<% } else { %>
 			<%- include('./partials/headerNoLogueado.ejs') %>
 		<% } %>
 	
-	
 
 	<!-- Novedades -->
 	<div class="container products-wrapper">
 		<div class="row">
 			<div class="col-12">
-				<h2 class="products-title">Editar mi perfil</h2>
-
+				<h2 class="products-title">Editar productos</h2>
 				
-
 			</div>
 			<!-- Show the "ultimos" products -->
-			<div class="formulario"> 
+			<div class="formulario">
 				<h2 class="col-12"> 
-				
-					<form action="/datos/profile-edits" method="POST" enctype= 'multipart/form-data'>
-	
-						<p>Nombre: </p> 
-						<input type="text" name="name" value=""> 
-						<!-- hay que hacer lo mismo que el producto pero hacer el value solo es nombre y email y lo de la contra mismo que hicimos imagen en producto -->
-	
-						<p>Mail:</p>
-						<input type="text" name="email" value="">
-	
-						<p>Contraseña: </p>
-						<input type="password" name="password" >
-						<!-- if(req.file){
-								if(req.body.password)
-								update
-							else(req.body.password)
-						} -->
-<!-- cuatro update -->
+					<form action="/editar-producto" method="POST" enctype= 'multipart/form-data' >
+
+						<p>Descripcion: </p>
+						<input type="text" name="descripcion" value="<%= producto.descripcion %>" required>
+
+						<p>Modelo: </p>
+						<input type="text" name="modelo" value="<%= producto.name_producto %>" required>
+
 						<p>Imagen: </p>
-						<input type="file" name="imagenProfile" >
-	
+						<input type="file" name="imagen" >
+                        <input type="hidden" name="id" value="<%= producto.id %> " >
+
 						<p>  <input type="submit" value="Submit"> </p>
-	
+
 					</form>
-	
 				</h2>
+
 			</div>
+			
+
 		</div>
 	</div>
-
 
 	<footer>
 		<%- include('./partials/footer.ejs') %>
 	</footer>
 
-	
 </body>
-
-
 
 </html>

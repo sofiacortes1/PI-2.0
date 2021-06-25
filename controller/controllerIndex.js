@@ -2,59 +2,41 @@ const db = require('../database/models');
 const Op = db.Sequelize.Op;
 
 let controladorIndex = {
-    index: (req, res) => {
-        // dos filtros (uno para nuevos y otro para viejos) dos variables, todoNuevos, todoViejos
-        let filtroNuevo = {
-            order: [
-                ['createdAt', 'DESC'],
+    index:(req, res, next)=>{
+        //Crear dos filtros, uno para viejos y uno para nuevos en esos mismos filtros incluyo asociasiones desde productos para poder llamarlo en la vista
+        let filtro={
+            
+            order:[
+                ['createdAt','DESC'],
             ],
-
-            limit: 4
-        }
-
-        let filtroViejo = {
-            order: [
-                ['createdAt', 'ASC'],
-            ],
-
-            limit: 4
-        } 
-        let filtroRelacion = {
+            limit: 4, 
+            //Creo las relaciones
             include: [
-                
-                {
-                    association: 'producto',
-                    include: [{
-                        association: 'comentario'
-                    }]
-                },
-                {
-                    association: 'usuario'
-                }
-            ]
-        }
+                {association: "comentario"},
+                {association:'usuario'}
+            ]}
+        
+        let filtroViejos={
+           
+            order:[
+                ['createdAt','ASC'],
+            ],
+            limit: 4, 
+            include: [
+                {association: "comentario"},
+                {association:'usuario'}
+            ]}
+        //promesas anidadas 
+        db.Producto.findAll(filtro).then(productos=>{
+        db.Producto.findAll(filtroViejos).then(
+           productosViejos =>
+           {res.render('index', {
+               productosNuevos : productos, 
+               productosViejos : productosViejos})
+           console.log(JSON.stringify(productos, null, 10));
+        })})
 
-        db.Producto.findAll(filtroNuevo, filtroRelacion).then(todoNuevo => {
-            db.Producto.findAll(filtroViejo, filtroRelacion).then(todoViejo => {
-                if (req.session.resultado) {
-                    res.render('index', {
-                        usuario: req.session.resultado,
-                        productosNuevos: todoNuevo,
-                        productosViejos: todoViejo,
-
-                        
-                    });
-                } else {
-                    res.render('index', {
-                        usuario: "anonimo",
-                        productosNuevos: todoNuevo,
-                        productosViejos: todoViejo, 
-                    });
-                }
-            })
-
-        }).catch(error => console.log(error));
-        console.log(filtroRelacion);
+        
 
     },
 
@@ -102,6 +84,7 @@ let controladorIndex = {
                 res.render('products')
 
             }
+            console.log(JSON.stringify(resultado, null, 10));
         
 
         })
@@ -144,6 +127,62 @@ let controladorIndex = {
 
     },
 
+    
+
+    productoAEditar: (req, res) => {
+        db.Producto.findByPk(req.params.id).then(productoAEditar => {
+            res.render('products-edits', {
+                producto: productoAEditar,
+                error: null
+            })
+        })
+    },
+
+    productoUpdate: (req, res) => {
+        if(!req.body.descripcion || !req.body.modelo){
+            db.Producto.findOne({
+                where: {
+                    id: req.body.id
+                }
+            }).then(productoAEditar => {
+                res.render('products-edits', {
+                    producto: productoAEditar, 
+                    error: "La descricpion y el modelo no pueden estar vacios"
+                })
+            })
+
+        }
+        if(req.file){
+            db.Producto.update({
+                descripcion: req.body.descripcion,
+                name_producto: req.body.modelo,
+                imagen: req.file.filename
+            }, {
+                where: {
+                    id: req.body.id
+                }
+            })
+            .then(() => {
+                res.redirect('/products/' + req.body.id)
+            });
+        }else{
+            db.Producto.update({
+                descripcion: req.body.descripcion,
+                name_producto: req.body.modelo,
+            }, {
+                where: {
+                    id: req.body.id
+                }
+            })
+            .then(() => {
+                res.redirect('/products/' + req.body.id)
+
+            });
+        } 
+        
+    
+    },
+
     borrarProducto: (req, res) => {
         db.Producto.destroy({
             where: {
@@ -154,39 +193,13 @@ let controladorIndex = {
         }).catch(error => console.log(error));
     },
 
-    productoAEditar: (req, res) => {
-        db.Producto.findByPk(req.query.id).then(productoAEditar => {
-            res.render('products', {
-                producto: productoAEditar
-            })
-        })
-    },
-
-    productoUpdate: (req, res) => {
-        db.Produto.update({
-                descripcion: req.body.descripcion,
-                name_producto: req.body.modelo,
-                imagen: req.file.filename
-            }, {
-                where: {
-                    id: req.body.id
-                }
-            })
-            .then(() => {
-                res.redirect('/products')
-
-
-            });
-    
-    },
-
     borrarComentario: (req,res) => {
         db.Comentario.destroy({
            where: {
              id: req.body.borrar
             }
        }).then(() => {
-           res.redirect('/products')
+           res.redirect('/products/' + req.body.id )
        }).catch(error => console.log(error));
 
       },

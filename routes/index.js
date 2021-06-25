@@ -33,7 +33,7 @@ router.get('/logout',controlador.logout);
 
 router.get('/borrar-producto', controlador.borrarProducto);
 
-router.get('/producto-editar', controlador.productoAEditar);
+router.get('/editar-producto/:id', controlador.productoAEditar);
 
 router.get('/borrar-comentario', controlador.borrarComentario);
 
@@ -43,7 +43,7 @@ router.post('/crear-producto', upload.single('imagen'), controlador.crearProduct
 
 router.post('/agregar-comentario', controlador.AgregarComentario);
 
-router.post('/producto-editar', controlador.productoAEditar);
+router.post('/editar-producto',upload.single('imagen'), controlador.productoUpdate);
 
 router.post('/borrar-producto', controlador.borrarProducto);
 
