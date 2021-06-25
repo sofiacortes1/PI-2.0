@@ -18,15 +18,30 @@ let controladorIndex = {
             ],
 
             limit: 4
+        } 
+        let filtroRelacion = {
+            include: [
+                
+                {
+                    association: 'producto',
+                    include: [{
+                        association: 'comentario'
+                    }]
+                },
+                {
+                    association: 'usuario'
+                }
+            ]
         }
 
-        db.Producto.findAll(filtroNuevo).then(todoNuevo => {
-            db.Producto.findAll(filtroViejo).then(todoViejo => {
+        db.Producto.findAll(filtroNuevo, filtroRelacion).then(todoNuevo => {
+            db.Producto.findAll(filtroViejo, filtroRelacion).then(todoViejo => {
                 if (req.session.resultado) {
                     res.render('index', {
                         usuario: req.session.resultado,
                         productosNuevos: todoNuevo,
                         productosViejos: todoViejo,
+
                         
                     });
                 } else {
@@ -39,6 +54,7 @@ let controladorIndex = {
             })
 
         }).catch(error => console.log(error));
+        console.log(filtroRelacion);
 
     },
 
@@ -53,7 +69,6 @@ let controladorIndex = {
     productDetalle: (req, res) => {
         const filtro = {
             include: [
-                
                 
                 {
                     association: 'comentario',
@@ -104,6 +119,7 @@ let controladorIndex = {
             descripcion: req.body.descripcion,
             name_producto: req.body.modelo,
             imagen: req.file.filename,
+            usuarios_id: req.session.resultado.id
         }).then(productoCreado => {
             console.log(productoCreado);
 

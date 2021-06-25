@@ -58,7 +58,7 @@ app.use(function (req, res, next) {
   if (req.session.resultado) {
     res.locals = {
       usuarioLogueado: true,
-      usuario: req.session.resultado,
+      miUsuario: req.session.resultado,
       
 
     }

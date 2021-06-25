@@ -28,10 +28,12 @@
 	<div class="container products-wrapper">
 		<div class="d-flex align-items-center">
 			<h2 class="products-title"><%= producto.name_producto %></h2> 
+			
 			<p class="product-detail-description">
 
 		<!-- form de editar productoo -->
 				<% if (usuarioLogueado) { %> 
+					<% if (miUsuario.id == usuario.id)%> 
 				<form action="/producto-editar" method="POST" >
 					<input name="editar" type="hidden" value="<%= producto.name_producto %>">
 					<input  type="submit" value="Editar">
@@ -52,14 +54,15 @@
 			<div class="row">
 				<article class="col-12 col-lg-8 product-detail-info">
 					<img src="/images/products/<%= producto.imagen %>" alt="" class="product-detail-img">
-					<p class="product-detail-description">
-						<%= producto.descripcion %> </p>
+					<p class="product-detail-description"> <%= producto.descripcion %> </p>
+					<p class="product-detail-description"> Contacto: <a href="/datos/profile/<%= producto.usuario.id%>"> <button><%= producto.usuario.first_name%></button></a> </p>
 				</article>
 
 
 				<!--parte donde muestra los comentarios -->
 				<div class="col-12 col-lg-4">
 					<section class="comments">
+
 					<% comentario.forEach(miComentario => { %>
 
 						<article>

@@ -6,7 +6,7 @@ const bcrypt = require('bcryptjs');
 let controladorDatos = {
 
     login: (req, res) => {
-        res.render('login');
+        res.render('login', {error: null});
     },
 
     profile: (req, res) => {
@@ -104,17 +104,29 @@ let controladorDatos = {
                     error: 'La contraseña debe tener mas de 3 digitos'
                 })
             }
-            db.Usuario.create({
-                first_name: req.body.name,
-                last_name: req.body.lname,
-                email: req.body.email,
-                contraseña: passEncriptada,
-                age: req.body.age,
-                birth_date: req.body.date
-
-            }).then(usuario => {
-                res.redirect('login');
-            }).catch(error => console.log(error))
+            db.Usuario.findOne({
+                where:{
+                    email: req.body.email
+                }
+            }).then(resultado => {
+                if(resultado){
+                    res.render('register', {
+                        error: 'este mail ya existe' 
+                    })
+                }
+                db.Usuario.create({
+                    first_name: req.body.name,
+                    last_name: req.body.lname,
+                    email: req.body.email,
+                    contraseña: passEncriptada,
+                    age: req.body.age,
+                    birth_date: req.body.date
+    
+                }).then(usuario => {
+                    res.redirect('login');
+                }).catch(error => console.log(error))
+            })
+            
         } else {
             res.render('register', {
                 error: 'No pusiste email'
@@ -134,28 +146,36 @@ let controladorDatos = {
 
         db.Usuario.findOne(filtro).then(resultado => {
                 // return res.send(resultado); 
+                if(resultado ){ 
+                    if (bcrypt.compareSync(req.body.pass, resultado.contraseña)) {
 
-                if (bcrypt.compareSync(req.body.pass, resultado.contraseña)) {
-
-                    req.session.resultado = {}
-                    req.session.resultado.email = resultado.email;
-                    req.session.resultado.first_name = resultado.first_name
-                    req.session.resultado.id = resultado.id
-
-                    if (req.body.remember) {
-                        res.cookie('userId', resultado.id, {
-                            maxAge: 100000 * 60 * 5
-                        });
-                        console.log("probando if");
+                        req.session.resultado = {}
+                        req.session.resultado.email = resultado.email;
+                        req.session.resultado.first_name = resultado.first_name
+                        req.session.resultado.id = resultado.id
+    
+                        if (req.body.remember) {
+                            res.cookie('userId', resultado.id, {
+                                maxAge: 100000 * 60 * 5
+                            });
+                            console.log("probando if");
+                        } else {
+                            console.log("probando else");
+                        }
                     } else {
-                        console.log("probando else");
+                        console.log("probando2");
+                        res.render('login', {error:'la contraseña es incorrecta'})
                     }
+    
+                    res.redirect('/datos/profile/' + resultado.id)
+                
                 } else {
-                    console.log("probando2");
-
+                    res.render('login', {error: 'El mail ingresado no existe'})
                 }
+                    
 
-                res.redirect('/datos/profile/' + resultado.id)
+
+                
             })
             .catch(error => console.log(error))
     },

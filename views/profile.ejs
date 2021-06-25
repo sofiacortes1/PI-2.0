@@ -36,13 +36,12 @@
 			<div class="data-container col-6">
 				<div class="d-flex align-items-center ">
 					<h1 class="main-title">  <%= usuarios.first_name  %> 
-						<% if (usuario.id === usuarioLogueado ) { %> 
-						<a href="/datos/profileEdits">
+						<% if (usuarioLogueado) { %>
+						 	<% if (miUsuario.id == usuarios.id) { %>  <!--  mismo en el de borrar y editar -->
+						 <a href="/datos/profileEdits">
 							<i class="fas fa-cog"></i>
-						</a>
-						<% } else { %>
-							
-							<% } %>
+					    	</a>
+						<% }} %>
 
 
 					</h1>
