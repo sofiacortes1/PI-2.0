@@ -8,6 +8,7 @@ CREATE TABLE usuarios (
     birth_date DATE NOT NULL, 
     email VARCHAR(55) NOT NULL UNIQUE, 
     contraseña VARCHAR(400) NOT NULL,
+	imagen VARCHAR(300),
     createdAt TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
     updatedAt TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
@@ -34,20 +35,20 @@ CREATE TABLE comentarios (
     updatedAt TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
 
-INSERT INTO usuarios (id, first_name, last_name, age, birth_date, email, contraseña)
-VALUES (DEFAULT, 'Lucía', 'Gomez', '26', '1995-04-23', 'luciagomez@gmail.com','abcd');
+INSERT INTO usuarios (id, first_name, last_name, age, birth_date, email, contraseña, imagen)
+VALUES (DEFAULT, 'Lucía', 'Gomez', '26', '1995-04-23', 'luciagomez@gmail.com','abcd', 'profile.jpej' );
 
-INSERT INTO usuarios (id, first_name, last_name, age, birth_date, email, contraseña)
-VALUES (DEFAULT, 'Micaela', 'Faur','19', '2001-11-14', 'mfaur@udesa.edu.ar','abcd' );
+INSERT INTO usuarios (id, first_name, last_name, age, birth_date, email, contraseña,imagen )
+VALUES (DEFAULT, 'Micaela', 'Faur','19', '2001-11-14', 'mfaur@udesa.edu.ar','abcd','profile.jpej' );
 
-INSERT INTO usuarios (id, first_name, last_name, age, birth_date, email, contraseña)
-VALUES (DEFAULT, 'Consuelo', 'Perrone', '18', '2002-05-31', 'cperrone@udesa.edu.ar', 'abcd');
+INSERT INTO usuarios (id, first_name, last_name, age, birth_date, email, contraseña, imagen)
+VALUES (DEFAULT, 'Consuelo', 'Perrone', '18', '2002-05-31', 'cperrone@udesa.edu.ar', 'abcd', 'profile.jpej' );
 
-INSERT INTO usuarios (id, first_name, last_name, age, birth_date, email, contraseña)
-VALUES (DEFAULT, 'Sofia', 'Cortes', '19', '2001-12-18', 'scortes@udesa.edu.ar', 'abcd');
+INSERT INTO usuarios (id, first_name, last_name, age, birth_date, email, contraseña, imagen)
+VALUES (DEFAULT, 'Sofia', 'Cortes', '19', '2001-12-18', 'scortes@udesa.edu.ar', 'abcd','profile.jpej' );
 
-INSERT INTO usuarios (id, first_name, last_name, age, birth_date, email, contraseña)
-VALUES (DEFAULT, 'Ariana', 'Umaschi', '19', '2002-09-24','aumaschi@udesa.edu.ar','abcd');
+INSERT INTO usuarios (id, first_name, last_name, age, birth_date, email, contraseña, imagen)
+VALUES (DEFAULT, 'Ariana', 'Umaschi', '19', '2002-09-24','aumaschi@udesa.edu.ar','abcd','profile.jpej' );
 
 
 
