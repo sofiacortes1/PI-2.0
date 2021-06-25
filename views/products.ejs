@@ -29,13 +29,15 @@
 		<div class="d-flex align-items-center">
 			<h2 class="products-title"><%= resultado.name_producto %></h2> 
 			<p class="product-detail-description">
+
+		<!-- form de editar productoo -->
 				<% if (usuarioLogueado) { %> 
 				<form action="/producto-editar" method="POST" >
 					<input name="editar" type="hidden" value="<%= resultado.name_producto %>">
 					<input  type="submit" value="Editar">
 				</form>
 			</p>
-
+		<!-- form de borrar productoo -->
 			<p class="product-detail-description">
 				<form action="/borrar-producto" method="POST" >
 					<input name="borrar" type="hidden" value="<%= resultado.id %>">
@@ -45,6 +47,7 @@
 			<% } else { %>
 				<% } %>
 		</div>
+		<!--parte donde se muestra el producto -->
 		<div class="product-detail">
 			<div class="row">
 				<article class="col-12 col-lg-8 product-detail-info">
@@ -52,15 +55,18 @@
 					<p class="product-detail-description">
 						<%= resultado.descripcion %> </p>
 				</article>
+
+
+				<!--parte donde muestra los comentarios -->
 				<div class="col-12 col-lg-4">
 					<section class="comments">
 						
 						<article>
-							<img src="https://via.placeholder.com/35" alt="">
+							<img src="/images/profile/<%= resultado.usuario.imagen%>" alt="">
 							<div class="data">
 								<p class="user">
-								<strong> <a href="/datos/profile/">Nombre usuario: </a> </strong>
-								 Texto del comentario que escribió el usuario Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempora doloribus enim aspernatur fugit corrupti suscipit sit dolore magnam, praesentium explicabo inventore molestias facilis labore. Fugit ipsa mollitia odit inventore consequuntur.</p>
+								<strong> <a href="/datos/profile/<%= resultado.usuario.id%>"> <%= resultado.usuario.first_name %> </a> </strong>
+								<!--	<%=  resultado.usuario.comentario    %></p>  falta terminar, cometario que hacer la persona -->
 							</div>
 						</article>
 						

@@ -26,13 +26,15 @@ let controladorIndex = {
                     res.render('index', {
                         usuario: req.session.resultado,
                         productosNuevos: todoNuevo,
-                        productosViejos: todoViejo
+                        productosViejos: todoViejo,
+                        error: error
                     });
                 } else {
                     res.render('index', {
                         usuario: "anonimo",
                         productosNuevos: todoNuevo,
-                        productosViejos: todoViejo
+                        productosViejos: todoViejo, 
+                        error: error
                     });
                 }
             })
@@ -53,9 +55,7 @@ let controladorIndex = {
         const filtro = {
             include: [
 
-                {
-                    association: 'comentario'
-                },
+                
                 {
                     association: 'usuario',
                     include: [{
@@ -63,12 +63,16 @@ let controladorIndex = {
                     }]
                 }
             ],
+            
         }
         let id = req.params.id;
-        console.log(id);
+        
+        console.log(filtro);
+
         db.Producto.findByPk(id, filtro).then(resultado => {
+            console.log(JSON.stringify(resultado, null, 10));
             res.render('products', {
-                resultado: resultado
+                resultado: resultado, 
             });
 
         })
@@ -97,9 +101,9 @@ let controladorIndex = {
             texto: req.body.agregar,
             usuarios_id: req.session.resultado.id,
             productos_id: req.params.id
-        }).then(comentarioAgregado => {
-            res.redirect('/products/' + req.params.id)
-        }).catch(error => console.log(error));
+        }).then(
+            res.redirect('/products/' + req.params.id),
+        ).catch(error => console.log(error));
 
     },
 
