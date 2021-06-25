@@ -31,11 +31,11 @@ router.get('/products-add',controlador.productsAdd);
 
 router.get('/logout',controlador.logout);
 
-router.get('/agregar-comentario', controlador.AgregarComentario);
-
 router.get('/borrar-producto', controlador.borrarProducto);
 
 router.get('/producto-editar', controlador.productoAEditar);
+
+router.get('/borrar-comentario', controlador.borrarComentario);
 
 //RUTAS POR POST
 
@@ -46,6 +46,9 @@ router.post('/agregar-comentario', controlador.AgregarComentario);
 router.post('/producto-editar', controlador.productoAEditar);
 
 router.post('/borrar-producto', controlador.borrarProducto);
+
+router.post('/borrar-comentario', controlador.borrarComentario);
+
 
 
 

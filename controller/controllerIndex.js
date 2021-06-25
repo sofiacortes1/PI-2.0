@@ -27,14 +27,13 @@ let controladorIndex = {
                         usuario: req.session.resultado,
                         productosNuevos: todoNuevo,
                         productosViejos: todoViejo,
-                        error: error
+                        
                     });
                 } else {
                     res.render('index', {
                         usuario: "anonimo",
                         productosNuevos: todoNuevo,
                         productosViejos: todoViejo, 
-                        error: error
                     });
                 }
             })
@@ -54,15 +53,22 @@ let controladorIndex = {
     productDetalle: (req, res) => {
         const filtro = {
             include: [
-
+                
                 
                 {
-                    association: 'usuario',
+                    association: 'comentario',
                     include: [{
-                        association: 'comentario'
+                        association: 'usuario'
                     }]
+                },
+                {
+                    association: 'usuario'
                 }
             ],
+
+            order: [[
+                "comentario", "createdAt", "DESC"
+            ]]
             
         }
         let id = req.params.id;
@@ -70,15 +76,30 @@ let controladorIndex = {
         console.log(filtro);
 
         db.Producto.findByPk(id, filtro).then(resultado => {
-            console.log(JSON.stringify(resultado, null, 10));
-            res.render('products', {
-                resultado: resultado, 
-            });
+            if(resultado){
+                res.render('products', {
+                producto: resultado, 
+                usuario: resultado.usuario,
+                comentario: resultado.comentario
+                })
+    
+            } else {
+                res.render('products')
+
+            }
+        
 
         })
     },
 
-    crearProducto: (req, res) => {
+    crearProducto: (req, res) => { 
+        
+        if ( !req.body.descripcion || !req.body.modelo || !req.file.filename ) {
+            res.render('products', {
+                error: 'No puede haber campos vacios'
+            })
+        }
+
         db.Producto.create({
             descripcion: req.body.descripcion,
             name_producto: req.body.modelo,
@@ -100,9 +121,9 @@ let controladorIndex = {
         db.Comentario.create({
             texto: req.body.agregar,
             usuarios_id: req.session.resultado.id,
-            productos_id: req.params.id
+            productos_id: req.body.editar
         }).then(
-            res.redirect('/products/' + req.params.id),
+            res.redirect('/products/' + req.body.editar),
         ).catch(error => console.log(error));
 
     },
@@ -141,26 +162,18 @@ let controladorIndex = {
 
             });
     
-    }
+    },
 
+    borrarComentario: (req,res) => {
+        db.Comentario.destroy({
+           where: {
+             id: req.body.borrar
+            }
+       }).then(() => {
+           res.redirect('/products')
+       }).catch(error => console.log(error));
 
-
-
-
-
-
-
-
-    //borrar: (req,res) => {
-    //    db.Comentario.destroy({
-    //       where: {
-    //         id: req.body.id
-    //        }
-    //   }).then(() => {
-    //       res.redirect('/products')
-    //   })
-
-    //  },
+      },
 
 };
 

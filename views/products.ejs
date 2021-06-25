@@ -27,20 +27,20 @@
 	<!-- product detail -->
 	<div class="container products-wrapper">
 		<div class="d-flex align-items-center">
-			<h2 class="products-title"><%= resultado.name_producto %></h2> 
+			<h2 class="products-title"><%= producto.name_producto %></h2> 
 			<p class="product-detail-description">
 
 		<!-- form de editar productoo -->
 				<% if (usuarioLogueado) { %> 
 				<form action="/producto-editar" method="POST" >
-					<input name="editar" type="hidden" value="<%= resultado.name_producto %>">
+					<input name="editar" type="hidden" value="<%= producto.name_producto %>">
 					<input  type="submit" value="Editar">
 				</form>
 			</p>
 		<!-- form de borrar productoo -->
 			<p class="product-detail-description">
 				<form action="/borrar-producto" method="POST" >
-					<input name="borrar" type="hidden" value="<%= resultado.id %>">
+					<input name="borrar" type="hidden" value="<%= producto.id %>">
 					<input  type="submit" value="Borrar">
 				</form>
 			</p>
@@ -51,30 +51,42 @@
 		<div class="product-detail">
 			<div class="row">
 				<article class="col-12 col-lg-8 product-detail-info">
-					<img src="/images/products/<%= resultado.imagen %>" alt="" class="product-detail-img">
+					<img src="/images/products/<%= producto.imagen %>" alt="" class="product-detail-img">
 					<p class="product-detail-description">
-						<%= resultado.descripcion %> </p>
+						<%= producto.descripcion %> </p>
 				</article>
 
 
 				<!--parte donde muestra los comentarios -->
 				<div class="col-12 col-lg-4">
 					<section class="comments">
-						
+					<% comentario.forEach(miComentario => { %>
+
 						<article>
-							<img src="/images/profile/<%= resultado.usuario.imagen%>" alt="">
+							<img src="/images/profile/<%= miComentario.usuario.imagen%>" alt="">
 							<div class="data">
 								<p class="user">
-								<strong> <a href="/datos/profile/<%= resultado.usuario.id%>"> <%= resultado.usuario.first_name %> </a> </strong>
-								<!--	<%=  resultado.usuario.comentario    %></p>  falta terminar, cometario que hacer la persona -->
+								<strong> <a href="/datos/profile/<%= miComentario.usuario.id%>"> <%= miComentario.usuario.first_name %> </a> </strong>
+								<%=  miComentario.texto    %> </p>  
+								<p> <%=  miComentario.createdAt  %>  </p>
+
+								<!--borrar comentario -->
+								<form action="/borrar-comentario" method="POST" >
+									<input name="borrar" type="hidden" value="<%= miComentario.id %>">
+									<input  type="submit" value="Borrar">
+								</form>
+
 							</div>
 						</article>
+
+					<% }) %>
 						
 					</section>
 
 					<% if (usuarioLogueado) { %> 
 					<form class="form" action="/agregar-comentario" method="POST">
-						<input class="form-input" type="text" name="agregar" value="" placeholder="Agregar comentario">
+						<input  class="form-input" type="text" name="agregar" value="" placeholder="Agregar comentario">
+						<input name="editar" type="hidden" value="<%= producto.id %>">
 						<button type="submit" class="buy-now-button">AGREGAR COMENTARIO</button>
 					</form>
 					<% } else { %>

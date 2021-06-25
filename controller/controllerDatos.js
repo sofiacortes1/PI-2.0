@@ -26,12 +26,16 @@ let controladorDatos = {
             ],
         }
         db.Usuario.findByPk(id, filtro).then(usuarios => {
-            if(usuarios){
-                res.render('profile', {usuarios: usuarios,})
+            if (usuarios) {
+                res.render('profile', {
+                    usuarios: usuarios,
+                })
             } else {
-                res.render('index', {error: 'No existe el perfil buscado'}) // que si no existe el perfil te mande directo al index y t diga q no existe
+                res.render('index', {
+                    error: 'No existe el perfil buscado'
+                }) // que si no existe el perfil te mande directo al index y t diga q no existe
             }
-            
+
             console.log(JSON.stringify(usuarios, null, 10));
         }).catch(error => {
             console.log(error)
@@ -57,7 +61,7 @@ let controladorDatos = {
         if (buscador !== '') {
             title = 'Encontramos esto de ' + buscador + '...'
         } else {
-            title = 'Esto encontramos para vos!'
+            title = 'Encontramos esto para vos!'
         };
 
         let filtro = {
@@ -165,35 +169,26 @@ let controladorDatos = {
     },
 
     profileUpdate: (req, res) => {
-        if (req.body.email.includes('@')) {
-            if (req.body.pass.length < 3) {
-                res.render('profile-edits', {
-                    error: 'La contraseña debe tener mas de 3 digitos'
-                })
-            }
 
-            db.Usuario.update({
-                    first_name: req.body.name,
-                    email: req.body.email,
-                    contraseña: req.body.password,
-                    imagen: req.file.filename,
+        db.Usuario.update({
+                first_name: req.body.name,
+                email: req.body.email,
+                contraseña: req.body.password,
+                imagen: req.file.filename,
 
-                }, {
-                    where: {
-                        id: req.body.id
-                    }
-                })
-                .then(() => {
-                    res.redirect('/products')
-
-                }).catch(error => console.log(error))
-        } else {
-            res.render('profile-edits', {
-                error: 'No pusiste email'
+            }, {
+                where: {
+                    id: req.body.id
+                }
             })
-        }
+            .then(() => {
+                res.redirect('/products')
 
+        }).catch(error => console.log(error))
     }
+
+
+
 
 
 
