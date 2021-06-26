@@ -36,19 +36,19 @@ CREATE TABLE comentarios (
 );
 
 INSERT INTO usuarios (id, first_name, last_name, age, birth_date, email, contraseña, imagen)
-VALUES (DEFAULT, 'Lucía', 'Gomez', '26', '1995-04-23', 'luciagomez@gmail.com','abcd', 'profile.jpej' );
+VALUES (DEFAULT, 'Lucía', 'Gomez', '26', '1995-04-23', 'luciagomez@gmail.com','abcd', 'profile.jpeg' );
 
 INSERT INTO usuarios (id, first_name, last_name, age, birth_date, email, contraseña,imagen )
-VALUES (DEFAULT, 'Micaela', 'Faur','19', '2001-11-14', 'mfaur@udesa.edu.ar','abcd','profile.jpej' );
+VALUES (DEFAULT, 'Micaela', 'Faur','19', '2001-11-14', 'mfaur@udesa.edu.ar','abcd','profile.jpeg' );
 
 INSERT INTO usuarios (id, first_name, last_name, age, birth_date, email, contraseña, imagen)
-VALUES (DEFAULT, 'Consuelo', 'Perrone', '18', '2002-05-31', 'cperrone@udesa.edu.ar', 'abcd', 'profile.jpej' );
+VALUES (DEFAULT, 'Consuelo', 'Perrone', '18', '2002-05-31', 'cperrone@udesa.edu.ar', 'abcd', 'profile.jpeg' );
 
 INSERT INTO usuarios (id, first_name, last_name, age, birth_date, email, contraseña, imagen)
-VALUES (DEFAULT, 'Sofia', 'Cortes', '19', '2001-12-18', 'scortes@udesa.edu.ar', 'abcd','profile.jpej' );
+VALUES (DEFAULT, 'Sofia', 'Cortes', '19', '2001-12-18', 'scortes@udesa.edu.ar', 'abcd','profile.jpeg' );
 
 INSERT INTO usuarios (id, first_name, last_name, age, birth_date, email, contraseña, imagen)
-VALUES (DEFAULT, 'Ariana', 'Umaschi', '19', '2002-09-24','aumaschi@udesa.edu.ar','abcd','profile.jpej' );
+VALUES (DEFAULT, 'Ariana', 'Umaschi', '19', '2002-09-24','aumaschi@udesa.edu.ar','abcd','profile.jpeg' );
 
 
 
@@ -211,3 +211,10 @@ VALUES (DEFAULT, 'lindo auto!',  3, 10);
 
 INSERT INTO comentarios (id, texto,  usuarios_id, productos_id )
 VALUES (DEFAULT, 'estupendo!', 4, 10);
+
+ select * from comentarios; 
+ 
+ drop table usuarios;
+
+
+
