@@ -44,9 +44,12 @@ let controladorDatos = {
     },
 
     profileEdits: (req, res) => {
+        db.Usuario.findByPk(req.params.id).then(perfilAEditar => {
         res.render('profile-edits', {
-            error: null
+            error: null,
+            usuario:perfilAEditar
         });
+        })
     },
 
     register: (req, res) => {
@@ -90,7 +93,7 @@ let controladorDatos = {
     },
 
     registerCreateUser: (req, res) => {
-        if (!req.body.name || !req.body.lname || !req.body.email || !req.body.date || !req.body.age || !req.body.pass) {
+        if (!req.body.name || !req.body.lname || !req.body.email || !req.body.date || !req.body.age || !req.body.pass || !req.file) {
             res.render('register', {
                 error: 'No puede haber campos vacios'
             })
@@ -120,7 +123,8 @@ let controladorDatos = {
                     email: req.body.email,
                     contraseña: passEncriptada,
                     age: req.body.age,
-                    birth_date: req.body.date
+                    birth_date: req.body.date,
+                    imagen: req.file.filename
     
                 }).then(usuario => {
                     res.redirect('login');
@@ -189,12 +193,55 @@ let controladorDatos = {
     },
 
     profileUpdate: (req, res) => {
-
-        db.Usuario.update({
+        if(!req.body.name || !req.body.email ) {
+            db.Usuario.findByPk(req.body.id).then(perfilAEditar => {
+                res.render('profile-edits', {
+                    error: "los Campos no pueden estar vacios",
+                    usuario:perfilAEditar
+                });
+                })
+        }
+        if (req.file){
+            if (req.body.password){
+                let pass=bcrypt.hashSync(req.body.password)
+                db.Usuario.update({
+                    first_name: req.body.name,
+                    email: req.body.email,
+                    contraseña: pass,
+                    imagen: req.file.filename,
+    
+                }, {
+                    where: {
+                        id: req.body.id
+                    }
+                })
+                .then(() => {
+                    res.redirect('/datos/profile/' + req.body.id)
+    
+            }).catch(error => console.log(error))
+            }else{
+                db.Usuario.update({
+                    first_name: req.body.name,
+                    email: req.body.email,
+                    imagen: req.file.filename,
+    
+                }, {
+                    where: {
+                        id: req.body.id
+                    }
+                })
+                .then(() => {
+                    res.redirect('/datos/profile/' + req.body.id)
+    
+            }).catch(error => console.log(error))
+            }
+        }else if(req.body.password){
+            let pass=bcrypt.hashSync(req.body.password)
+            db.Usuario.update({
                 first_name: req.body.name,
                 email: req.body.email,
-                contraseña: req.body.password,
-                imagen: req.file.filename,
+                contraseña: pass,
+                
 
             }, {
                 where: {
@@ -202,9 +249,26 @@ let controladorDatos = {
                 }
             })
             .then(() => {
-                res.redirect('/products')
+                res.redirect('/datos/profile/' + req.body.id)
 
         }).catch(error => console.log(error))
+        }else{
+            db.Usuario.update({
+                first_name: req.body.name,
+                email: req.body.email,
+                
+
+            }, {
+                where: {
+                    id: req.body.id
+                }
+            })
+            .then(() => {
+                res.redirect('/datos/profile/' + req.body.id)
+
+        }).catch(error => console.log(error)) 
+        }
+        
     }
 
 

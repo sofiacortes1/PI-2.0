@@ -29,7 +29,7 @@
 	<section class="info-usuario container products-wrapper">
 		<div class="row">
 			<div class="img-container offset-3 col-2">
-				<img src="https://via.placeholder.com/150" alt="foto de perfil" class="foto-perfil">
+				<img src="/images/profile/<%= usuarios.imagen %>" alt="foto de perfil" class="foto-perfil">
 			</div>
 
 			<!-- Datos del usuario y form para editar perfil-->
@@ -38,7 +38,7 @@
 					<h1 class="main-title">  <%= usuarios.first_name  %> 
 						<% if (usuarioLogueado) { %>
 						 	<% if (miUsuario.id == usuarios.id) { %>  <!--  mismo en el de borrar y editar -->
-						 <a href="/datos/profileEdits">
+						 <a href="/datos/profileEdits/<%= usuarios.id %> ">
 							<i class="fas fa-cog"></i>
 					    	</a>
 						<% }} %>

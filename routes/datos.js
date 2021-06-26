@@ -24,11 +24,11 @@ router.get('/login', controlador.login);
 
 router.get('/profile/:id', controlador.profile);
 
-router.get('/profileEdits', controlador.profileEdits);
+router.get('/profileEdits/:id', controlador.profileEdits);
 
 router.get('/register', controlador.register);
 
-router.get('/profile-edits', controlador.profileModify);
+
 
 
 router.get('/searchResults', controlador.searchResults);
@@ -38,7 +38,7 @@ router.get('/searchResults', controlador.searchResults);
 
 router.post('/login', controlador.loginValidate);
 
-router.post('/register', controlador.registerCreateUser);
+router.post('/register', upload.single('imagenProfile'), controlador.registerCreateUser);
 
 router.post('/profile-edits', upload.single('imagenProfile'), controlador.profileUpdate);
 

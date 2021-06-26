@@ -212,9 +212,8 @@ VALUES (DEFAULT, 'lindo auto!',  3, 10);
 INSERT INTO comentarios (id, texto,  usuarios_id, productos_id )
 VALUES (DEFAULT, 'estupendo!', 4, 10);
 
- select * from comentarios; 
  
- drop table usuarios;
+
 
 
 

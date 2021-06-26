@@ -41,7 +41,10 @@
 			<div class="col-12">
 				<h2 class="products-title">Editar mi perfil</h2>
 
-				
+				<% if (error){ %>
+					<span  class="products-title">	Hubo un error: <%= error %> </span>
+
+				<%  } %>
 
 			</div>
 			<!-- Show the "ultimos" products -->
@@ -51,11 +54,11 @@
 					<form action="/datos/profile-edits" method="POST" enctype= 'multipart/form-data'>
 	
 						<p>Nombre: </p> 
-						<input type="text" name="name" value=""> 
+						<input type="text" name="name" value="<%= usuario.first_name %>" required> 
 						<!-- hay que hacer lo mismo que el producto pero hacer el value solo es nombre y email y lo de la contra mismo que hicimos imagen en producto -->
 	
 						<p>Mail:</p>
-						<input type="text" name="email" value="">
+						<input type="text" name="email" value="<%= usuario.email %>" required>
 	
 						<p>Contraseña: </p>
 						<input type="password" name="password" >
@@ -67,7 +70,7 @@
 <!-- cuatro update -->
 						<p>Imagen: </p>
 						<input type="file" name="imagenProfile" >
-	
+						<input type="hidden" name="id" value="<%= usuario.id %>">
 						<p>  <input type="submit" value="Submit"> </p>
 	
 					</form>
