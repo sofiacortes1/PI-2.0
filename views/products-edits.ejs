@@ -35,6 +35,11 @@
 		<div class="row">
 			<div class="col-12">
 				<h2 class="products-title">Editar productos</h2>
+
+				<% if (error){ %>
+					<span  class="products-title">	Hubo un error: <%= error %> </span>
+
+				<%  } %>
 				
 			</div>
 			<!-- Show the "ultimos" products -->
@@ -46,7 +51,7 @@
 						<input type="text" name="descripcion" value="<%= producto.descripcion %>" required>
 
 						<p>Modelo: </p>
-						<input type="text" name="modelo" value="<%= producto.name_producto %>" required>
+						<input type="text" name="modelo" value="<%= producto.name_producto %>" >
 
 						<p>Imagen: </p>
 						<input type="file" name="imagen" >
